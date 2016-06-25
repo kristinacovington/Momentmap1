@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95D9CF1E1D1F291E004A0D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF1D1D1F291E004A0D70 /* main.m */; };
+		95D9CF211D1F291E004A0D70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF201D1F291E004A0D70 /* AppDelegate.m */; };
+		95D9CF241D1F291E004A0D70 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF231D1F291E004A0D70 /* ViewController.m */; };
+		95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF251D1F291E004A0D70 /* Main.storyboard */; };
+		95D9CF291D1F291E004A0D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF281D1F291E004A0D70 /* Assets.xcassets */; };
+		95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF2A1D1F291E004A0D70 /* LaunchScreen.storyboard */; };
+		95D9CF371D1F291F004A0D70 /* MomentmapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF361D1F291F004A0D70 /* MomentmapTests.m */; };
+		95D9CF421D1F291F004A0D70 /* MomentmapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF411D1F291F004A0D70 /* MomentmapUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		95D9CF331D1F291F004A0D70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95D9CF111D1F291E004A0D70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95D9CF181D1F291E004A0D70;
+			remoteInfo = Momentmap;
+		};
+		95D9CF3E1D1F291F004A0D70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95D9CF111D1F291E004A0D70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95D9CF181D1F291E004A0D70;
+			remoteInfo = Momentmap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		95D9CF191D1F291E004A0D70 /* Momentmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momentmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95D9CF1D1D1F291E004A0D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95D9CF1F1D1F291E004A0D70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		95D9CF201D1F291E004A0D70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		95D9CF221D1F291E004A0D70 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		95D9CF231D1F291E004A0D70 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		95D9CF261D1F291E004A0D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		95D9CF281D1F291E004A0D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		95D9CF2B1D1F291E004A0D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		95D9CF2D1D1F291E004A0D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95D9CF321D1F291F004A0D70 /* MomentmapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentmapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95D9CF361D1F291F004A0D70 /* MomentmapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MomentmapTests.m; sourceTree = "<group>"; };
+		95D9CF381D1F291F004A0D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95D9CF3D1D1F291F004A0D70 /* MomentmapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentmapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95D9CF411D1F291F004A0D70 /* MomentmapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MomentmapUITests.m; sourceTree = "<group>"; };
+		95D9CF431D1F291F004A0D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		95D9CF161D1F291E004A0D70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D9CF2F1D1F291F004A0D70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D9CF3A1D1F291F004A0D70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95D9CF101D1F291E004A0D70 = {
+			isa = PBXGroup;
+			children = (
+				95D9CF1B1D1F291E004A0D70 /* Momentmap */,
+				95D9CF351D1F291F004A0D70 /* MomentmapTests */,
+				95D9CF401D1F291F004A0D70 /* MomentmapUITests */,
+				95D9CF1A1D1F291E004A0D70 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		95D9CF1A1D1F291E004A0D70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95D9CF191D1F291E004A0D70 /* Momentmap.app */,
+				95D9CF321D1F291F004A0D70 /* MomentmapTests.xctest */,
+				95D9CF3D1D1F291F004A0D70 /* MomentmapUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95D9CF1B1D1F291E004A0D70 /* Momentmap */ = {
+			isa = PBXGroup;
+			children = (
+				95D9CF1F1D1F291E004A0D70 /* AppDelegate.h */,
+				95D9CF201D1F291E004A0D70 /* AppDelegate.m */,
+				95D9CF221D1F291E004A0D70 /* ViewController.h */,
+				95D9CF231D1F291E004A0D70 /* ViewController.m */,
+				95D9CF251D1F291E004A0D70 /* Main.storyboard */,
+				95D9CF281D1F291E004A0D70 /* Assets.xcassets */,
+				95D9CF2A1D1F291E004A0D70 /* LaunchScreen.storyboard */,
+				95D9CF2D1D1F291E004A0D70 /* Info.plist */,
+				95D9CF1C1D1F291E004A0D70 /* Supporting Files */,
+			);
+			path = Momentmap;
+			sourceTree = "<group>";
+		};
+		95D9CF1C1D1F291E004A0D70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95D9CF1D1D1F291E004A0D70 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95D9CF351D1F291F004A0D70 /* MomentmapTests */ = {
+			isa = PBXGroup;
+			children = (
+				95D9CF361D1F291F004A0D70 /* MomentmapTests.m */,
+				95D9CF381D1F291F004A0D70 /* Info.plist */,
+			);
+			path = MomentmapTests;
+			sourceTree = "<group>";
+		};
+		95D9CF401D1F291F004A0D70 /* MomentmapUITests */ = {
+			isa = PBXGroup;
+			children = (
+				95D9CF411D1F291F004A0D70 /* MomentmapUITests.m */,
+				95D9CF431D1F291F004A0D70 /* Info.plist */,
+			);
+			path = MomentmapUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		95D9CF181D1F291E004A0D70 /* Momentmap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95D9CF461D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "Momentmap" */;
+			buildPhases = (
+				95D9CF151D1F291E004A0D70 /* Sources */,
+				95D9CF161D1F291E004A0D70 /* Frameworks */,
+				95D9CF171D1F291E004A0D70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Momentmap;
+			productName = Momentmap;
+			productReference = 95D9CF191D1F291E004A0D70 /* Momentmap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		95D9CF311D1F291F004A0D70 /* MomentmapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95D9CF491D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "MomentmapTests" */;
+			buildPhases = (
+				95D9CF2E1D1F291F004A0D70 /* Sources */,
+				95D9CF2F1D1F291F004A0D70 /* Frameworks */,
+				95D9CF301D1F291F004A0D70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95D9CF341D1F291F004A0D70 /* PBXTargetDependency */,
+			);
+			name = MomentmapTests;
+			productName = MomentmapTests;
+			productReference = 95D9CF321D1F291F004A0D70 /* MomentmapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		95D9CF3C1D1F291F004A0D70 /* MomentmapUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95D9CF4C1D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "MomentmapUITests" */;
+			buildPhases = (
+				95D9CF391D1F291F004A0D70 /* Sources */,
+				95D9CF3A1D1F291F004A0D70 /* Frameworks */,
+				95D9CF3B1D1F291F004A0D70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95D9CF3F1D1F291F004A0D70 /* PBXTargetDependency */,
+			);
+			name = MomentmapUITests;
+			productName = MomentmapUITests;
+			productReference = 95D9CF3D1D1F291F004A0D70 /* MomentmapUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95D9CF111D1F291E004A0D70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Kristina Covington";
+				TargetAttributes = {
+					95D9CF181D1F291E004A0D70 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					95D9CF311D1F291F004A0D70 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 95D9CF181D1F291E004A0D70;
+					};
+					95D9CF3C1D1F291F004A0D70 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 95D9CF181D1F291E004A0D70;
+					};
+				};
+			};
+			buildConfigurationList = 95D9CF141D1F291E004A0D70 /* Build configuration list for PBXProject "Momentmap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 95D9CF101D1F291E004A0D70;
+			productRefGroup = 95D9CF1A1D1F291E004A0D70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95D9CF181D1F291E004A0D70 /* Momentmap */,
+				95D9CF311D1F291F004A0D70 /* MomentmapTests */,
+				95D9CF3C1D1F291F004A0D70 /* MomentmapUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95D9CF171D1F291E004A0D70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */,
+				95D9CF291D1F291E004A0D70 /* Assets.xcassets in Resources */,
+				95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D9CF301D1F291F004A0D70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D9CF3B1D1F291F004A0D70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95D9CF151D1F291E004A0D70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95D9CF241D1F291E004A0D70 /* ViewController.m in Sources */,
+				95D9CF211D1F291E004A0D70 /* AppDelegate.m in Sources */,
+				95D9CF1E1D1F291E004A0D70 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D9CF2E1D1F291F004A0D70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95D9CF371D1F291F004A0D70 /* MomentmapTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95D9CF391D1F291F004A0D70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95D9CF421D1F291F004A0D70 /* MomentmapUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		95D9CF341D1F291F004A0D70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95D9CF181D1F291E004A0D70 /* Momentmap */;
+			targetProxy = 95D9CF331D1F291F004A0D70 /* PBXContainerItemProxy */;
+		};
+		95D9CF3F1D1F291F004A0D70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95D9CF181D1F291E004A0D70 /* Momentmap */;
+			targetProxy = 95D9CF3E1D1F291F004A0D70 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		95D9CF251D1F291E004A0D70 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95D9CF261D1F291E004A0D70 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		95D9CF2A1D1F291E004A0D70 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95D9CF2B1D1F291E004A0D70 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		95D9CF441D1F291F004A0D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		95D9CF451D1F291F004A0D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		95D9CF471D1F291F004A0D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Momentmap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.Momentmap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		95D9CF481D1F291F004A0D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Momentmap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.Momentmap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		95D9CF4A1D1F291F004A0D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MomentmapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.MomentmapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Momentmap.app/Momentmap";
+			};
+			name = Debug;
+		};
+		95D9CF4B1D1F291F004A0D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MomentmapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.MomentmapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Momentmap.app/Momentmap";
+			};
+			name = Release;
+		};
+		95D9CF4D1D1F291F004A0D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MomentmapUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.MomentmapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Momentmap;
+			};
+			name = Debug;
+		};
+		95D9CF4E1D1F291F004A0D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MomentmapUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.MomentmapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Momentmap;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		95D9CF141D1F291E004A0D70 /* Build configuration list for PBXProject "Momentmap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95D9CF441D1F291F004A0D70 /* Debug */,
+				95D9CF451D1F291F004A0D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95D9CF461D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "Momentmap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95D9CF471D1F291F004A0D70 /* Debug */,
+				95D9CF481D1F291F004A0D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		95D9CF491D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "MomentmapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95D9CF4A1D1F291F004A0D70 /* Debug */,
+				95D9CF4B1D1F291F004A0D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		95D9CF4C1D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "MomentmapUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95D9CF4D1D1F291F004A0D70 /* Debug */,
+				95D9CF4E1D1F291F004A0D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 95D9CF111D1F291E004A0D70 /* Project object */;
+}
