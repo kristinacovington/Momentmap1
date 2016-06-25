@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Momentmap
+
+  Created by Kristina Covington on 6/25/16.
+  Copyright © 2016 Kristina Covington. All rights reserved.
+*/
+
+/* Localized versions of Info.plist keys */
+
+NSLocationWhenInUseUsageDescription = "Momentmap would like to use your location when the app is active";
