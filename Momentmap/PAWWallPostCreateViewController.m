@@ -45,6 +45,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //EDITED: putting image in imageview
+    [self.imageView addSubview:self.image];
+    
     UIView *accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 10.0f, 144.0f, 26.0f)];
     self.characterCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 144.0f, 21.0f)];
     self.characterCountLabel.backgroundColor = [UIColor clearColor];
@@ -139,6 +142,61 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+//EDITED buttons
+
+- (IBAction)takePhotoPost:(id)sender {
+
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        
+        
+        
+    } else {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+        
+    }
+
+
+}
+
+//EDITED: Camera methods
+#pragma mark - Image Picker Controller delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    //EDITED: set image
+    if(chosenImage != NULL)
+        self.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
 
 #pragma mark -
 #pragma mark UITextViewDelegate

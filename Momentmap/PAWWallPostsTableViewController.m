@@ -63,12 +63,12 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     [super viewDidLoad];
     
     self.tableView.separatorColor = self.view.backgroundColor;
-    self.refreshControl.tintColor = [UIColor colorWithRed:118.0f/255.0f green:117.0f/255.0f blue:117.0f/255.0f alpha:1.0f];
+    self.refreshControl.tintColor = [UIColor colorWithRed:102.0f green:0.0f blue:102.0f alpha:1.0f];
     
     // Set up a view for empty content
     self.noDataButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.noDataButton setTintColor:[UIColor colorWithRed:43.0f/255.0f green:181.0f/255.0f blue:46.0f/255.0f alpha:1.0f]];
-    [self.noDataButton setTitle:@"Be the first to post in this area." forState:UIControlStateNormal];
+    [self.noDataButton setTintColor:[UIColor colorWithRed:102.0f green:0.0f blue:102.0f alpha:1.0f]];
+    [self.noDataButton setTitle:@"Send a moment!" forState:UIControlStateNormal];
     [self.noDataButton addTarget:self.parentViewController
                           action:@selector(postButtonSelected:)
                 forControlEvents:UIControlEventTouchUpInside];

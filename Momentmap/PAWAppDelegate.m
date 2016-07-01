@@ -37,13 +37,13 @@ PAWSettingsViewControllerDelegate>
     // ****************************************************************************
     // Parse initialization
     [Parse setApplicationId:@"q5pHAN13XctkfVgn7ys6NmwJZhN6mKAgUxQUN2ve" clientKey:@"5cf97LADTGabos3OPsaa9k53HO8Wzcqpy5pzRj0B"];
-    
+   
     // PFFacebookUtils initialization
     //[PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     // ****************************************************************************
     
     // Set the global tint on the navigation bar
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:43.0f/255.0f green:181.0f/255.0f blue:46.0f/255.0f alpha:1.0f]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:102.0f green:0.0f blue:102.0f alpha:1.0f]];
     
     // Setup default NSUserDefaults
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

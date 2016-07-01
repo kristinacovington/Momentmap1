@@ -20,6 +20,9 @@
 #import "PAWWallPostCreateViewController.h"
 #import "PAWWallPostsTableViewController.h"
 
+#import "FriendsViewController.h"
+
+
 @interface PAWWallViewController ()
 <PAWWallPostsTableViewControllerDataSource,
 PAWWallPostCreateViewControllerDataSource>
@@ -46,7 +49,7 @@ PAWWallPostCreateViewControllerDataSource>
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Anywall";
+        self.title = @"Momentmap";
         
         _annotations = [[NSMutableArray alloc] initWithCapacity:10];
         _allPosts = [[NSMutableArray alloc] initWithCapacity:10];
@@ -87,11 +90,19 @@ PAWWallPostCreateViewControllerDataSource>
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(postButtonSelected:)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
+    
+
+    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(settingsButtonSelected:)];
+    UIBarButtonItem *friends = [[UIBarButtonItem alloc] initWithTitle:@"Friends"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(friendsButtonSelected:)];
     
+    self.navigationItem.leftBarButtonItems = @[settings, friends];
+
     self.mapView.region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.332495f, -122.029095f),
                                                  MKCoordinateSpanMake(0.008516f, 0.021801f));
     self.mapPannedSinceLocationUpdate = NO;
@@ -158,10 +169,77 @@ PAWWallPostCreateViewControllerDataSource>
 #pragma mark -
 #pragma mark WallPostCreatViewController
 
+
 - (void)presentWallPostCreateViewController {
+    //EDITED: presentCameraViewController
+    /*
+     PAWWallPostCreateViewController *viewController = [[PAWWallPostCreateViewController alloc] initWithNibName:nil bundle:nil];
+     viewController.dataSource = self;
+     [self.navigationController presentViewController:viewController animated:YES completion:nil];
+     */
+    
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        
+        PAWWallPostCreateViewController *viewController = [[PAWWallPostCreateViewController alloc] initWithNibName:nil bundle:nil];
+        viewController.dataSource = self;
+        [self.navigationController presentViewController:viewController animated:YES completion:nil];
+        
+    } else {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+        
+    }
+}
+
+//EDITED friends view controller
+- (void)presentFriendsViewController {
+    
+    
+    FriendsViewController *viewController = [[FriendsViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController presentViewController:viewController animated:YES completion:nil];
+
+}
+
+//EDITED: Camera methods
+#pragma mark - Image Picker Controller delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    
+    //EDITED: present post view controller
     PAWWallPostCreateViewController *viewController = [[PAWWallPostCreateViewController alloc] initWithNibName:nil bundle:nil];
     viewController.dataSource = self;
+    
+    //EDITED: set image
+    if(chosenImage != NULL)
+        viewController.image = chosenImage;
+    
     [self.navigationController presentViewController:viewController animated:YES completion:nil];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 #pragma mark DataSource
@@ -190,6 +268,10 @@ PAWWallPostCreateViewControllerDataSource>
     if (!self.mapPannedSinceLocationUpdate) {
         // Set the map's region centered on their location at 2x filterDistance
         MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, filterDistance * 2.0f, filterDistance * 2.0f);
+        
+        //EDITED: to center map on user location
+        //[self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
+
         
         [self.mapView setRegion:newRegion animated:YES];
         self.mapPannedSinceLocationUpdate = NO;
@@ -255,7 +337,15 @@ PAWWallPostCreateViewControllerDataSource>
 }
 
 - (IBAction)postButtonSelected:(id)sender {
+
     [self presentWallPostCreateViewController];
+
+}
+
+- (IBAction)friendsButtonSelected:(id)sender {
+    
+    [self presentFriendsViewController];
+    
 }
 
 #pragma mark -
@@ -286,9 +376,9 @@ PAWWallPostCreateViewControllerDataSource>
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     switch (status) {
-        case kCLAuthorizationStatusAuthorized:
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
         {
-            NSLog(@"kCLAuthorizationStatusAuthorized");
+            NSLog(@"kCLAuthorizationStatusAuthorizedWhenInUse");
             // Re-enable the post button if it was disabled before.
             self.navigationItem.rightBarButtonItem.enabled = YES;
             [self.locationManager startUpdatingLocation];
@@ -343,13 +433,13 @@ PAWWallPostCreateViewControllerDataSource>
 #pragma mark MKMapViewDelegate
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay {
-    if ([overlay isKindOfClass:[MKCircle class]]) {
+    /*if ([overlay isKindOfClass:[MKCircle class]]) {
         MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc] initWithCircle:self.circleOverlay];
         [circleRenderer setFillColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.2f]];
         [circleRenderer setStrokeColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.7f]];
         [circleRenderer setLineWidth:1.0f];
         return circleRenderer;
-    }
+    }*/
     return nil;
 }
 
@@ -394,6 +484,7 @@ PAWWallPostCreateViewControllerDataSource>
         MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate,
                                                                           filterDistance * 2.0f,
                                                                           filterDistance * 2.0f);
+        
         
         [self.mapView setRegion:newRegion animated:YES];
         self.mapPannedSinceLocationUpdate = NO;

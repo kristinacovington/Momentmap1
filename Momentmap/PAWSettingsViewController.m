@@ -155,7 +155,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
         }
         
         // Configure the cell.
-        cell.textLabel.text = @"Log out of Anywall";
+        cell.textLabel.text = @"Log out of Momentmap";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         
         return cell;
@@ -204,7 +204,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
         self.filterDistance = PAWFeetToMeters(distanceForCellInFeet);
     } else if (indexPath.section == PAWSettingsTableViewSectionLogout) {
         [aTableView deselectRowAtIndexPath:indexPath animated:YES];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log out of Anywall?"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log out of Momentmap?"
                                                             message:nil
                                                            delegate:self
                                                   cancelButtonTitle:@"Log out"
@@ -234,5 +234,29 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 - (void)alertViewCancel:(UIAlertView *)alertView {
     return;
 }
+
+
+//EDIT: upload photo button
+- (IBAction)uploadPhoto:(id)sender {
+    
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc]
+                                                 init];
+    pickerController.delegate = self;
+    [self presentModalViewController:pickerController animated:YES];
+
+
+}
+
+#pragma mark -
+#pragma mark UIImagePickerControllerDelegate
+
+- (void) imagePickerController:(UIImagePickerController *)picker
+         didFinishPickingImage:(UIImage *)image
+                   editingInfo:(NSDictionary *)editingInfo
+{
+    self.imageView.image = image;
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 @end

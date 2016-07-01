@@ -27,7 +27,13 @@
 @property (nonatomic, strong) IBOutlet UILabel *characterCountLabel;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *postButton;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) UIImage *image;
+
+
+
 - (IBAction)cancelPost:(id)sender;
 - (IBAction)postPost:(id)sender;
+- (IBAction)takePhotoPost:(id)sender;
 
 @end

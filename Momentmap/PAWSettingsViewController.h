@@ -22,4 +22,9 @@
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+- (IBAction)uploadPhoto:(id)sender;
+
+
 @end

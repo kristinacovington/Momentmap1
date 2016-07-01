@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Momentmap would like to use your location when the app is active</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>NSAppTransportSecurity</key>

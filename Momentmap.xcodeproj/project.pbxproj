@@ -26,7 +26,6 @@
 		95D9CF7F1D1F338B004A0D70 /* PAWLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7A1D1F338B004A0D70 /* PAWLoginViewController.xib */; };
 		95D9CF801D1F338B004A0D70 /* PAWNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7B1D1F338B004A0D70 /* PAWNewUserViewController.xib */; };
 		95D9CF811D1F338B004A0D70 /* PAWSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7C1D1F338B004A0D70 /* PAWSettingsViewController.xib */; };
-		95D9CF821D1F338B004A0D70 /* PAWWallPostCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7D1D1F338B004A0D70 /* PAWWallPostCreateViewController.xib */; };
 		95D9CF831D1F338B004A0D70 /* PAWWallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7E1D1F338B004A0D70 /* PAWWallViewController.xib */; };
 		95D9CF851D1F33BB004A0D70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */; };
 		95D9CF871D1F35A4004A0D70 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF861D1F35A4004A0D70 /* info.plist */; };
@@ -49,6 +48,9 @@
 		95D9CFD61D1F40BD004A0D70 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFD31D1F40BD004A0D70 /* Parse.framework */; };
 		95D9CFD71D1F40BD004A0D70 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFD41D1F40BD004A0D70 /* ParseFacebookUtils.framework */; };
 		95D9CFD91D1F41E8004A0D70 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFD81D1F41E8004A0D70 /* libsqlite3.tbd */; };
+		95D9CFDA1D2632B5004A0D70 /* PAWWallPostCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7D1D1F338B004A0D70 /* PAWWallPostCreateViewController.xib */; };
+		95D9CFDD1D263D01004A0D70 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFDC1D263D01004A0D70 /* FriendsViewController.m */; };
+		95D9CFDF1D263EEA004A0D70 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CFDE1D263EEA004A0D70 /* FriendsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,9 @@
 		95D9CFD31D1F40BD004A0D70 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		95D9CFD41D1F40BD004A0D70 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		95D9CFD81D1F41E8004A0D70 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		95D9CFDB1D263CF1004A0D70 /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		95D9CFDC1D263D01004A0D70 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		95D9CFDE1D263EEA004A0D70 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +231,7 @@
 				95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */,
 				95D9CF1D1D1F291E004A0D70 /* main.m */,
 				95D9CF881D1F361A004A0D70 /* Anywall-Prefix.pch */,
+				95D9CFDE1D263EEA004A0D70 /* FriendsViewController.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -306,6 +312,8 @@
 				95D9CF741D1F319E004A0D70 /* PAWWallPostsTableViewController.m */,
 				95D9CFB71D1F3A82004A0D70 /* PAWWallPostCreateViewController.h */,
 				95D9CFB81D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m */,
+				95D9CFDB1D263CF1004A0D70 /* FriendsViewController.h */,
+				95D9CFDC1D263D01004A0D70 /* FriendsViewController.m */,
 			);
 			name = "AnyWall View and Posts";
 			sourceTree = "<group>";
@@ -435,6 +443,7 @@
 				TargetAttributes = {
 					95D9CF181D1F291E004A0D70 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = M4NVF9W9KV;
 					};
 					95D9CF311D1F291F004A0D70 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -471,16 +480,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D9CFDA1D2632B5004A0D70 /* PAWWallPostCreateViewController.xib in Resources */,
 				95D9CF801D1F338B004A0D70 /* PAWNewUserViewController.xib in Resources */,
 				95D9CF831D1F338B004A0D70 /* PAWWallViewController.xib in Resources */,
 				95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */,
 				95D9CF291D1F291E004A0D70 /* Images.xcassets in Resources */,
-				95D9CF821D1F338B004A0D70 /* PAWWallPostCreateViewController.xib in Resources */,
 				95D9CF871D1F35A4004A0D70 /* info.plist in Resources */,
 				95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */,
 				95D9CF811D1F338B004A0D70 /* PAWSettingsViewController.xib in Resources */,
 				95D9CF851D1F33BB004A0D70 /* InfoPlist.strings in Resources */,
 				95D9CF7F1D1F338B004A0D70 /* PAWLoginViewController.xib in Resources */,
+				95D9CFDF1D263EEA004A0D70 /* FriendsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +521,7 @@
 				95D9CFB91D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m in Sources */,
 				95D9CF621D1F2F89004A0D70 /* PAWPostTableViewCell.m in Sources */,
 				95D9CF781D1F31EF004A0D70 /* PAWSettingsViewController.m in Sources */,
+				95D9CFDD1D263D01004A0D70 /* FriendsViewController.m in Sources */,
 				95D9CF691D1F3050004A0D70 /* PAWLoginViewController.m in Sources */,
 				95D9CF1E1D1F291E004A0D70 /* main.m in Sources */,
 				95D9CF751D1F319E004A0D70 /* PAWWallPostsTableViewController.m in Sources */,
@@ -659,6 +670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Momentmap",
@@ -675,6 +687,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Momentmap",
