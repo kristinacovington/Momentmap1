@@ -27,7 +27,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *characterCountLabel;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *postButton;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 
 

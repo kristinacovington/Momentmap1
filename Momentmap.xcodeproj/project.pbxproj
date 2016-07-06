@@ -48,9 +48,15 @@
 		95D9CFD61D1F40BD004A0D70 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFD31D1F40BD004A0D70 /* Parse.framework */; };
 		95D9CFD71D1F40BD004A0D70 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFD41D1F40BD004A0D70 /* ParseFacebookUtils.framework */; };
 		95D9CFD91D1F41E8004A0D70 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFD81D1F41E8004A0D70 /* libsqlite3.tbd */; };
-		95D9CFDA1D2632B5004A0D70 /* PAWWallPostCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7D1D1F338B004A0D70 /* PAWWallPostCreateViewController.xib */; };
 		95D9CFDD1D263D01004A0D70 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFDC1D263D01004A0D70 /* FriendsViewController.m */; };
 		95D9CFDF1D263EEA004A0D70 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CFDE1D263EEA004A0D70 /* FriendsViewController.xib */; };
+		95D9CFE11D2AF4BF004A0D70 /* PAWWallPostCreateViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CFE01D2AF4BF004A0D70 /* PAWWallPostCreateViewController2.xib */; };
+		95D9CFE21D2B0013004A0D70 /* PAWWallPostCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFB81D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m */; };
+		95D9CFE41D2B0049004A0D70 /* PAWWallPostCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CFE31D2B0049004A0D70 /* PAWWallPostCreateViewController.xib */; };
+		95D9CFE71D2B0427004A0D70 /* UIImage+ResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFE61D2B0427004A0D70 /* UIImage+ResizeAdditions.m */; };
+		95D9CFF51D2CC112004A0D70 /* UIImage+RoundedCornerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFF41D2CC112004A0D70 /* UIImage+RoundedCornerAdditions.m */; };
+		95D9CFFA1D2CC19A004A0D70 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFF71D2CC19A004A0D70 /* UIImage+Alpha.m */; };
+		95D9CFFB1D2CC19A004A0D70 /* UIImage+AlphaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFF91D2CC19A004A0D70 /* UIImage+AlphaAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +112,6 @@
 		95D9CF7A1D1F338B004A0D70 /* PAWLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWLoginViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWLoginViewController.xib"; sourceTree = "<group>"; };
 		95D9CF7B1D1F338B004A0D70 /* PAWNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWNewUserViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWNewUserViewController.xib"; sourceTree = "<group>"; };
 		95D9CF7C1D1F338B004A0D70 /* PAWSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWSettingsViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWSettingsViewController.xib"; sourceTree = "<group>"; };
-		95D9CF7D1D1F338B004A0D70 /* PAWWallPostCreateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWWallPostCreateViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWWallPostCreateViewController.xib"; sourceTree = "<group>"; };
 		95D9CF7E1D1F338B004A0D70 /* PAWWallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWWallViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWWallViewController.xib"; sourceTree = "<group>"; };
 		95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		95D9CF861D1F35A4004A0D70 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
@@ -134,6 +139,16 @@
 		95D9CFDB1D263CF1004A0D70 /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		95D9CFDC1D263D01004A0D70 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		95D9CFDE1D263EEA004A0D70 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
+		95D9CFE01D2AF4BF004A0D70 /* PAWWallPostCreateViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PAWWallPostCreateViewController2.xib; sourceTree = "<group>"; };
+		95D9CFE31D2B0049004A0D70 /* PAWWallPostCreateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWWallPostCreateViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWWallPostCreateViewController.xib"; sourceTree = "<group>"; };
+		95D9CFE51D2B0427004A0D70 /* UIImage+ResizeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ResizeAdditions.h"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+ResizeAdditions.h"; sourceTree = "<group>"; };
+		95D9CFE61D2B0427004A0D70 /* UIImage+ResizeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ResizeAdditions.m"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+ResizeAdditions.m"; sourceTree = "<group>"; };
+		95D9CFF31D2CC111004A0D70 /* UIImage+RoundedCornerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCornerAdditions.h"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+RoundedCornerAdditions.h"; sourceTree = "<group>"; };
+		95D9CFF41D2CC112004A0D70 /* UIImage+RoundedCornerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCornerAdditions.m"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+RoundedCornerAdditions.m"; sourceTree = "<group>"; };
+		95D9CFF61D2CC19A004A0D70 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+Alpha.h"; sourceTree = "<group>"; };
+		95D9CFF71D2CC19A004A0D70 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+Alpha.m"; sourceTree = "<group>"; };
+		95D9CFF81D2CC19A004A0D70 /* UIImage+AlphaAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+AlphaAdditions.h"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+AlphaAdditions.h"; sourceTree = "<group>"; };
+		95D9CFF91D2CC19A004A0D70 /* UIImage+AlphaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+AlphaAdditions.m"; path = "../../../Downloads/ParsePlatform-Anypic-a9e87fd/Anypic-iOS/Anypic/UIImage+AlphaAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +217,14 @@
 		95D9CF1B1D1F291E004A0D70 /* Momentmap */ = {
 			isa = PBXGroup;
 			children = (
+				95D9CFF61D2CC19A004A0D70 /* UIImage+Alpha.h */,
+				95D9CFF71D2CC19A004A0D70 /* UIImage+Alpha.m */,
+				95D9CFF81D2CC19A004A0D70 /* UIImage+AlphaAdditions.h */,
+				95D9CFF91D2CC19A004A0D70 /* UIImage+AlphaAdditions.m */,
+				95D9CFF31D2CC111004A0D70 /* UIImage+RoundedCornerAdditions.h */,
+				95D9CFF41D2CC112004A0D70 /* UIImage+RoundedCornerAdditions.m */,
+				95D9CFE51D2B0427004A0D70 /* UIImage+ResizeAdditions.h */,
+				95D9CFE61D2B0427004A0D70 /* UIImage+ResizeAdditions.m */,
 				95D9CF501D1F2CD8004A0D70 /* PAWAppDelegate.h */,
 				95D9CF511D1F2D39004A0D70 /* PAWAppDelegate.m */,
 				95D9CF531D1F2D79004A0D70 /* PAWConfigManager.h */,
@@ -222,16 +245,17 @@
 		95D9CF1C1D1F291E004A0D70 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				95D9CFE31D2B0049004A0D70 /* PAWWallPostCreateViewController.xib */,
 				95D9CF7A1D1F338B004A0D70 /* PAWLoginViewController.xib */,
 				95D9CF7B1D1F338B004A0D70 /* PAWNewUserViewController.xib */,
 				95D9CF7C1D1F338B004A0D70 /* PAWSettingsViewController.xib */,
-				95D9CF7D1D1F338B004A0D70 /* PAWWallPostCreateViewController.xib */,
 				95D9CF7E1D1F338B004A0D70 /* PAWWallViewController.xib */,
 				95D9CF861D1F35A4004A0D70 /* info.plist */,
 				95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */,
 				95D9CF1D1D1F291E004A0D70 /* main.m */,
 				95D9CF881D1F361A004A0D70 /* Anywall-Prefix.pch */,
 				95D9CFDE1D263EEA004A0D70 /* FriendsViewController.xib */,
+				95D9CFE01D2AF4BF004A0D70 /* PAWWallPostCreateViewController2.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -480,7 +504,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95D9CFDA1D2632B5004A0D70 /* PAWWallPostCreateViewController.xib in Resources */,
+				95D9CFE11D2AF4BF004A0D70 /* PAWWallPostCreateViewController2.xib in Resources */,
 				95D9CF801D1F338B004A0D70 /* PAWNewUserViewController.xib in Resources */,
 				95D9CF831D1F338B004A0D70 /* PAWWallViewController.xib in Resources */,
 				95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */,
@@ -489,6 +513,7 @@
 				95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */,
 				95D9CF811D1F338B004A0D70 /* PAWSettingsViewController.xib in Resources */,
 				95D9CF851D1F33BB004A0D70 /* InfoPlist.strings in Resources */,
+				95D9CFE41D2B0049004A0D70 /* PAWWallPostCreateViewController.xib in Resources */,
 				95D9CF7F1D1F338B004A0D70 /* PAWLoginViewController.xib in Resources */,
 				95D9CFDF1D263EEA004A0D70 /* FriendsViewController.xib in Resources */,
 			);
@@ -515,16 +540,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D9CFF51D2CC112004A0D70 /* UIImage+RoundedCornerAdditions.m in Sources */,
 				95D9CF711D1F3123004A0D70 /* PAWWallViewController.m in Sources */,
 				95D9CF5E1D1F2F10004A0D70 /* PAWActivityView.m in Sources */,
 				95D9CF551D1F2DA4004A0D70 /* PAWConfigManager.m in Sources */,
 				95D9CFB91D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m in Sources */,
 				95D9CF621D1F2F89004A0D70 /* PAWPostTableViewCell.m in Sources */,
+				95D9CFE71D2B0427004A0D70 /* UIImage+ResizeAdditions.m in Sources */,
+				95D9CFFB1D2CC19A004A0D70 /* UIImage+AlphaAdditions.m in Sources */,
 				95D9CF781D1F31EF004A0D70 /* PAWSettingsViewController.m in Sources */,
 				95D9CFDD1D263D01004A0D70 /* FriendsViewController.m in Sources */,
 				95D9CF691D1F3050004A0D70 /* PAWLoginViewController.m in Sources */,
 				95D9CF1E1D1F291E004A0D70 /* main.m in Sources */,
 				95D9CF751D1F319E004A0D70 /* PAWWallPostsTableViewController.m in Sources */,
+				95D9CFFA1D2CC19A004A0D70 /* UIImage+Alpha.m in Sources */,
 				95D9CF5A1D1F2E83004A0D70 /* PAWPost.m in Sources */,
 				95D9CF521D1F2D39004A0D70 /* PAWAppDelegate.m in Sources */,
 				95D9CF6C1D1F30AC004A0D70 /* PAWNewUserViewController.m in Sources */,
@@ -536,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95D9CF371D1F291F004A0D70 /* MomentmapTests.m in Sources */,
+				95D9CFE21D2B0013004A0D70 /* PAWWallPostCreateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

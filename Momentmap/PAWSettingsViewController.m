@@ -2,8 +2,15 @@
 //  PAWSettingsViewController.m
 //  Momentmap
 //
-//  Created by Kristina Covington on 6/25/16.
-//  Copyright © 2016 Kristina Covington. All rights reserved.
+//  Created by Kristina Covington on 3/10/15.
+//  Copyright (c) 2015 Kristina Covington. All rights reserved.
+//
+
+//
+//  PAWSettingsViewController.m
+//  Anywall
+//
+//  Copyright (c) 2014 Parse Inc. All rights reserved.
 //
 
 #import "PAWSettingsViewController.h"
@@ -12,6 +19,7 @@
 
 #import "PAWConstants.h"
 #import "PAWConfigManager.h"
+#import "UIImage+ResizeAdditions.h"
 
 typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 {
@@ -25,8 +33,17 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 
 @interface PAWSettingsViewController ()
 
+@property (strong, nonatomic) IBOutlet UIButton *button;
 @property (nonatomic, strong) NSArray *distanceOptions;
 @property (nonatomic, assign) CLLocationAccuracy filterDistance;
+
+
+@property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
+
+
+@property (nonatomic, strong) PFFile *photoFile;
+
 
 @end
 
@@ -44,10 +61,17 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
     return self;
 }
 
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setProfile];
+    
+}
+
 #pragma mark -
 #pragma mark UIViewController
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+- (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
 
@@ -78,8 +102,114 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 #pragma mark -
 #pragma mark UINavigationBar-based actions
 
+-(void) setProfile {
+    
+    PFUser *user = [PFUser currentUser];
+    
+    PFFile *file = [user objectForKey:kPAPProfilePictureKey];
+    
+    if (!self.imageView.image){
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *fetchedImage = [UIImage imageWithData:data];
+                // image can now be set on a UIImageView
+                self.imageView.image = fetchedImage;
+            }
+        }];
+        NSLog(@"BLANK SPACE");
+    }
+    else
+        NSLog(@"FILLED");
+}
+
+
+
 - (IBAction)done:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+- (IBAction)save:(id)sender {
+    
+    PFUser *user = [PFUser currentUser];
+    
+    
+    
+    
+    PFFile *file = self.photoFile;
+    
+    
+    if (!self.photoFile) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+        [alert show];
+        return;
+    }
+    
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Couldn't save!");
+            NSLog(@"%@", error);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error userInfo][@"error"]
+                                                                message:nil
+                                                               delegate:self
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"Ok", nil];
+            [alertView show];
+            return;
+        }
+        if (succeeded) {
+            NSLog(@"Successfully saved!");
+            NSLog(@"%@", file);
+            
+        } else {
+            NSLog(@"Failed to save.");
+        }
+    }];
+    
+    
+    
+    
+    [user setObject:file forKey:kPAPProfilePictureKey];
+    [[PFUser currentUser] saveInBackground];
+    NSLog(@"%@", user);
+    
+    
+    
+    
+}
+
+
+- (IBAction)change:(id)sender {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        
+        
+        UIImagePickerController *pickerController = [[UIImagePickerController alloc]
+                                                     init];
+        pickerController.delegate = self;
+        [self presentModalViewController:pickerController animated:YES];
+        
+        
+    } else {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+        
+    }
+
+   
 }
 
 #pragma mark -
@@ -106,17 +236,17 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case PAWSettingsTableViewSectionDistance:
-            return [self.distanceOptions count];
-            break;
-        case PAWSettingsTableViewSectionLogout:
-            return PAWSettingsTableViewLogoutNumberOfRows;
-            break;
-        case PAWSettingsTableViewNumberOfSections:
-            return 0;
-            break;
-    };
+    /*switch (section) {
+     case PAWSettingsTableViewSectionDistance:
+     return [self.distanceOptions count];
+     break;
+     case PAWSettingsTableViewSectionLogout:
+     return PAWSettingsTableViewLogoutNumberOfRows;
+     break;
+     case PAWSettingsTableViewNumberOfSections:
+     return 0;
+     break;
+     };*/
     
     return 0;
 }
@@ -140,7 +270,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
             NSLog(@"We have a zero filter distance!");
         }
         
-        if (fabs(PAWFeetToMeters(distance) - self.filterDistance) < 0.001 ) {
+        if (abs(PAWFeetToMeters(distance) - self.filterDistance) < 0.001 ) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -235,28 +365,98 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
     return;
 }
 
-
-//EDIT: upload photo button
-- (IBAction)uploadPhoto:(id)sender {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    UIImagePickerController *pickerController = [[UIImagePickerController alloc]
-                                                 init];
-    pickerController.delegate = self;
-    [self presentModalViewController:pickerController animated:YES];
-
-
+    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    chosenImage= [chosenImage thumbnailImage:86.0f
+                           transparentBorder:0.0f
+                                cornerRadius:0.0f
+                        interpolationQuality:kCGInterpolationDefault];
+    
+    
+    
+    //image view that receives image
+    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    [self shouldUploadImage:chosenImage];
+    
 }
 
-#pragma mark -
-#pragma mark UIImagePickerControllerDelegate
+- (BOOL)shouldUploadImage:(UIImage *)anImage {
+    
+    
+    
+    // Get an NSData representation of our images. We use JPEG for the larger image
+    // for better compression and PNG for the thumbnail to keep the corner radius transparency
+    NSData *imageData = UIImageJPEGRepresentation(anImage, 0.8f);
+    
+    
+    if (!imageData) {
+        return NO;
+    }
+    
+    self.photoFile = [PFFile fileWithData:imageData];
+    
+    
+    // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
+    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+    }];
+    
+    NSLog(@"Requested background expiration task with id %lu for photo upload", (unsigned long)self.fileUploadBackgroundTaskId);
+    [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Photo uploaded successfully");
+            
+        } else {
+            [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+        }
+    }];
+    
+    return YES;
+}
 
-- (void) imagePickerController:(UIImagePickerController *)picker
-         didFinishPickingImage:(UIImage *)image
-                   editingInfo:(NSDictionary *)editingInfo
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)selectImage:(UIImage *)img
 {
-    self.imageView.image = image;
-    [self dismissModalViewControllerAnimated:YES];
+    NSLog(@"Image passed  %@", img); // This is the UIImage being passed.
+    self.imageView.image = [img thumbnailImage:86.0f
+                             transparentBorder:0.0f
+                                  cornerRadius:0.0f
+                          interpolationQuality:kCGInterpolationDefault];
+    
+    
+    
+    NSLog(@"Image in view  %@", self.imageView.image);
 }
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Where are you?"]) {
+        textView.text = nil;
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:nil]) {
+        textView.text = @"Where are you?";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
+}
+
 
 
 @end

@@ -2,8 +2,15 @@
 //  PAWSettingsViewController.h
 //  Momentmap
 //
-//  Created by Kristina Covington on 6/25/16.
-//  Copyright © 2016 Kristina Covington. All rights reserved.
+//  Created by Kristina Covington on 3/10/15.
+//  Copyright (c) 2015 Kristina Covington. All rights reserved.
+//
+
+//
+//  PAWSettingsViewController.m
+//  Anywall
+//
+//  Copyright (c) 2014 Parse Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -21,10 +28,11 @@
 @property (nonatomic, weak) id<PAWSettingsViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIButton *change;
 
-- (IBAction)uploadPhoto:(id)sender;
 
+@property(nonatomic, strong) UIImageView *imageView;
 
 @end

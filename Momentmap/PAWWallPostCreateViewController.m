@@ -46,7 +46,8 @@
     [super viewDidLoad];
     
     //EDITED: putting image in imageview
-    [self.imageView addSubview:self.image];
+    self.imageView.image = self.image;
+    
     
     UIView *accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 10.0f, 144.0f, 26.0f)];
     self.characterCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 144.0f, 21.0f)];
@@ -58,6 +59,7 @@
     
     [self updateCharacterCountLabel];
     [self checkCharacterCount];
+     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -237,7 +239,7 @@
     BOOL enabled = NO;
     
     NSUInteger count = [self.textView.text length];
-    if (count > 0 && count < self.maximumCharacterCount) {
+    if (count < self.maximumCharacterCount) {
         enabled = YES;
     }
     

@@ -189,9 +189,12 @@ PAWWallPostCreateViewControllerDataSource>
         
         [myAlertView show];
         
-        PAWWallPostCreateViewController *viewController = [[PAWWallPostCreateViewController alloc] initWithNibName:nil bundle:nil];
-        viewController.dataSource = self;
-        [self.navigationController presentViewController:viewController animated:YES completion:nil];
+        
+        UIImagePickerController *pickerController = [[UIImagePickerController alloc]
+                                                     init];
+        pickerController.delegate = self;
+        [self presentModalViewController:pickerController animated:YES];
+
         
     } else {
         
@@ -216,7 +219,7 @@ PAWWallPostCreateViewControllerDataSource>
 
 //EDITED: Camera methods
 #pragma mark - Image Picker Controller delegate methods
-
+/*
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -229,12 +232,34 @@ PAWWallPostCreateViewControllerDataSource>
     viewController.dataSource = self;
     
     //EDITED: set image
-    if(chosenImage != NULL)
-        viewController.image = chosenImage;
+    viewController.image = chosenImage;
     
     [self.navigationController presentViewController:viewController animated:YES completion:nil];
     
 }
+*/
+- (void) imagePickerController:(UIImagePickerController *)picker
+         didFinishPickingImage:(UIImage *)image
+                   editingInfo:(NSDictionary *)editingInfo
+{
+    
+    
+    //EDITED: present post view controller
+    PAWWallPostCreateViewController *viewController = [[PAWWallPostCreateViewController alloc] initWithNibName:nil bundle:nil];
+    viewController.dataSource = self;
+    
+    //EDITED: set image
+    viewController.image = image;
+    
+    [self dismissModalViewControllerAnimated:YES];
+
+    
+    [self.navigationController presentViewController:viewController animated:YES completion:nil];
+
+
+    
+}
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
