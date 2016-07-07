@@ -22,6 +22,7 @@
 @property (nonatomic, assign) MKPinAnnotationColor pinColor;
 
 
+
 @end
 
 @implementation PAWPost
@@ -46,14 +47,31 @@
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(geoPoint.latitude, geoPoint.longitude);
     NSString *title = object[PAWParsePostTextKey];
     NSString *subtitle = object[PAWParsePostUserKey][PAWParsePostNameKey] ?: object[PAWParsePostUserKey][PAWParsePostUsernameKey];
-    
-    
-    
+
     self = [self initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle];
     if (self) {
         self.object = object;
         self.user = object[PAWParsePostUserKey];
+        
+        //PFFile *photoFile = self.object[kPAPPostPictureKey];
+        PFFile *profileFile = self.user[kPAPProfilePictureKey];
+        
+        //self.photo = [UIImage imageWithData:photoFile];
+        [profileFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                self.profile = [UIImage imageWithData:data];
+                // image can now be set on a UIImageView
+            }
+        }];
     }
+    /*
+    PFFile *photoFile = object[kPAPPostPictureKey];
+    PFFile *profileFile = self.user[kPAPProfilePictureKey];
+    
+    self.photo = [UIImage imageWithData:photoFile];
+    self.profile = [UIImage imageWithData:profileFile];
+    */
+    
     return self;
 }
 

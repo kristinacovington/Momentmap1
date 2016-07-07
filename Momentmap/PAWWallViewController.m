@@ -488,7 +488,9 @@ PAWWallPostCreateViewControllerDataSource>
         } else {
             pinView.annotation = annotation;
         }
-        pinView.pinColor = [(PAWPost *)annotation pinColor];
+        
+        pinView.image = [(PAWPost *) annotation profile];
+        //pinView.pinColor = [(PAWPost *)annotation pinColor];
         pinView.animatesDrop = [((PAWPost *)annotation) animatesDrop];
         pinView.canShowCallout = YES;
         
@@ -616,10 +618,10 @@ PAWWallPostCreateViewControllerDataSource>
         CLLocationDistance distanceFromCurrent = [currentLocation distanceFromLocation:objectLocation];
         if (distanceFromCurrent > nearbyDistance) { // Outside search radius
             [post setTitleAndSubtitleOutsideDistance:YES];
-            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:post] setPinColor:post.pinColor];
+            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
         } else {
             [post setTitleAndSubtitleOutsideDistance:NO]; // Inside search radius
-            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:post] setPinColor:post.pinColor];
+            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
         }
     }
 }

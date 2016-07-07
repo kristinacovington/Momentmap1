@@ -37,6 +37,8 @@
 @property (nonatomic, strong, readonly) PFUser *user;
 @property (nonatomic, assign) BOOL animatesDrop;
 @property (nonatomic, assign, readonly) MKPinAnnotationColor pinColor;
+@property (nonatomic, strong) UIImage *profile;
+@property(nonatomic, strong) UIImage *photo;
 
 // Designated initializer.
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate

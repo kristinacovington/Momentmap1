@@ -398,6 +398,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
         return NO;
     }
     
+    
     self.photoFile = [PFFile fileWithData:imageData];
     
     
