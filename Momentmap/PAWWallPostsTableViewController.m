@@ -7,7 +7,7 @@
 //
 
 #import "PAWWallPostsTableViewController.h"
-
+#import "PAWPostView.h"
 #import "PAWConstants.h"
 #import "PAWPost.h"
 #import "PAWPostTableViewCell.h"
@@ -186,6 +186,18 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // call super because we're a custom subclass.
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    PFObject *object = [self.objects objectAtIndex:indexPath.row];
+    PAWPost *post = [[PAWPost alloc] initWithPFObject:object];
+    
+    PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
+    postViewController.dataSource = self;
+    postViewController.imageView.image = [(PAWPost *) post photo];
+    postViewController.commentLabel.text = [(PAWPost *) post title];
+    postViewController.usernameLabel.text = [(PAWPost *) post subtitle];
+    postViewController.profileView.image = [(PAWPost *) post profile];
+    [self.navigationController presentViewController:postViewController animated:YES completion:nil];
+
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

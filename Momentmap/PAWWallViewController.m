@@ -14,6 +14,7 @@
 //
 
 #import "PAWWallViewController.h"
+#import "PAWPostView.h"
 
 #import "PAWConstants.h"
 #import "PAWPost.h"
@@ -479,11 +480,11 @@ PAWWallPostCreateViewControllerDataSource>
     // Handle any custom annotations.
     if ([annotation isKindOfClass:[PAWPost class]]) {
         // Try to dequeue an existing pin view first.
-        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapVIew dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+        MKAnnotationView *pinView = (MKAnnotationView*)[mapVIew dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
         
         if (!pinView) {
             // If an existing pin view was not available, create one.
-            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation
                                                       reuseIdentifier:pinIdentifier];
         } else {
             pinView.annotation = annotation;
@@ -491,7 +492,7 @@ PAWWallPostCreateViewControllerDataSource>
         
         pinView.image = [(PAWPost *) annotation profile];
         //pinView.pinColor = [(PAWPost *)annotation pinColor];
-        pinView.animatesDrop = [((PAWPost *)annotation) animatesDrop];
+        //pinView.animatesDrop = [((PAWPost *)annotation) animatesDrop];
         pinView.canShowCallout = YES;
         
         return pinView;
@@ -505,6 +506,15 @@ PAWWallPostCreateViewControllerDataSource>
     if ([annotation isKindOfClass:[PAWPost class]]) {
         PAWPost *post = [view annotation];
         [self.wallPostsTableViewController highlightCellForPost:post];
+        
+        PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
+        postViewController.dataSource = self;
+        postViewController.imageView.image = [(PAWPost *) annotation photo];
+        postViewController.commentLabel.text = [(PAWPost *) annotation title];
+        postViewController.usernameLabel.text = [(PAWPost *) annotation subtitle];
+        postViewController.profileView.image = [(PAWPost *) annotation profile];
+        [self.navigationController presentViewController:postViewController animated:YES completion:nil];
+        
     } else if ([annotation isKindOfClass:[MKUserLocation class]]) {
         // Center the map on the user's current location:
         CLLocationAccuracy filterDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:PAWUserDefaultsFilterDistanceKey];
@@ -618,10 +628,10 @@ PAWWallPostCreateViewControllerDataSource>
         CLLocationDistance distanceFromCurrent = [currentLocation distanceFromLocation:objectLocation];
         if (distanceFromCurrent > nearbyDistance) { // Outside search radius
             [post setTitleAndSubtitleOutsideDistance:YES];
-            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
+            [(MKAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
         } else {
             [post setTitleAndSubtitleOutsideDistance:NO]; // Inside search radius
-            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
+            [(MKAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
         }
     }
 }
