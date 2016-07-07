@@ -24,6 +24,12 @@
 
 @property (nonatomic, assign) NSUInteger maximumCharacterCount;
 
+@property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
+
+@property (nonatomic, strong) PFFile *photoFile;
+
+
 @end
 
 @implementation PAWWallPostCreateViewController
@@ -48,6 +54,8 @@
     //EDITED: putting image in imageview
     self.imageView.image = self.image;
     
+    [self shouldUploadImage:self.image];
+
     
     UIView *accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 10.0f, 144.0f, 26.0f)];
     self.characterCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 144.0f, 21.0f)];
@@ -119,6 +127,26 @@
     [readOnlyACL setPublicWriteAccess:NO];
     postObject.ACL = readOnlyACL;
     
+    
+    
+    PFFile *file = self.photoFile;
+    
+    
+    
+    if (!self.photoFile) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+        [alert show];
+        return;
+    }
+    
+    
+    [postObject setObject:file forKey:kPAPPostPictureKey];
+    [postObject saveInBackground];
+    NSLog(@"%@", user);
+    
+    
+    
+    
     [postObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"Couldn't save!");
@@ -144,6 +172,43 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+- (BOOL)shouldUploadImage:(UIImage *)anImage {
+    
+    
+    
+    // Get an NSData representation of our images. We use JPEG for the larger image
+    // for better compression and PNG for the thumbnail to keep the corner radius transparency
+    NSData *imageData = UIImageJPEGRepresentation(anImage, 0.8f);
+    
+    
+    if (!imageData) {
+        return NO;
+    }
+    
+    self.photoFile = [PFFile fileWithData:imageData];
+    
+    
+    // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
+    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+    }];
+    
+    NSLog(@"Requested background expiration task with id %lu for photo upload", (unsigned long)self.fileUploadBackgroundTaskId);
+    [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Photo uploaded successfully");
+            
+        } else {
+            [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+        }
+    }];
+    
+    return YES;
+}
+
+
 
 //EDITED buttons
 
@@ -183,11 +248,10 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
     //EDITED: set image
     if(chosenImage != NULL)
         self.image = chosenImage;
+
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     

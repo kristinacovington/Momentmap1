@@ -21,6 +21,7 @@
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, assign) MKPinAnnotationColor pinColor;
 
+
 @end
 
 @implementation PAWPost
@@ -34,8 +35,8 @@
     self = [super init];
     if (self) {
         self.coordinate = coordinate;
-        self.title = title;
-        self.subtitle = subtitle;
+        self.subtitle = title;
+        self.title = subtitle;
     }
     return self;
 }
@@ -45,6 +46,8 @@
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(geoPoint.latitude, geoPoint.longitude);
     NSString *title = object[PAWParsePostTextKey];
     NSString *subtitle = object[PAWParsePostUserKey][PAWParsePostNameKey] ?: object[PAWParsePostUserKey][PAWParsePostUsernameKey];
+    
+    
     
     self = [self initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle];
     if (self) {

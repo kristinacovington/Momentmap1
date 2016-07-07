@@ -52,6 +52,8 @@ static NSString * const PAWUserDefaultsFilterDistanceKey = @"filterDistance";
 typedef double PAWLocationAccuracy;
 
 static NSString * const kPAPProfilePictureKey = @"Profile";
+static NSString * const kPAPPostPictureKey = @"Photo";
+
 
 #endif // Anywall_PAWConstants_h
 

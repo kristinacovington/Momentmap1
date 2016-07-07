@@ -31,6 +31,7 @@
 @property (nonatomic, copy, readonly) NSString *subtitle;
 // @end
 
+
 // Other properties:
 @property (nonatomic, strong, readonly) PFObject *object;
 @property (nonatomic, strong, readonly) PFUser *user;
