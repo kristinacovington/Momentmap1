@@ -11,13 +11,9 @@
 
 @class PAWPostView;
 
-@protocol PAWWallPostCreateViewControllerDataSource <NSObject>
-
-@end
 
 @interface PAWPostView : UIViewController
 
-@property (nonatomic, weak) id<PAWWallPostCreateViewControllerDataSource> dataSource;
 
 @property (nonatomic, strong) IBOutlet UILabel *commentLabel;
 @property (nonatomic, strong) IBOutlet UILabel *usernameLabel;

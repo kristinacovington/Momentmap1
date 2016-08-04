@@ -54,6 +54,13 @@ typedef double PAWLocationAccuracy;
 static NSString * const kPAPProfilePictureKey = @"Profile";
 static NSString * const kPAPPostPictureKey = @"Photo";
 
+static NSString * const friendsKey = @"Friends";
+static NSString * const receivedKey = @"ReceivedRequests";
+static NSString * const sentKey = @"SentRequests";
+
+
+
+
 
 #endif // Anywall_PAWConstants_h
 

@@ -191,11 +191,10 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     PAWPost *post = [[PAWPost alloc] initWithPFObject:object];
     
     PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
-    postViewController.dataSource = self;
-    postViewController.imageView.image = [(PAWPost *) post photo];
-    postViewController.commentLabel.text = [(PAWPost *) post title];
-    postViewController.usernameLabel.text = [(PAWPost *) post subtitle];
-    postViewController.profileView.image = [(PAWPost *) post profile];
+    postViewController.imageView.image = [post photo];
+    postViewController.commentLabel.text = [post title];
+    postViewController.usernameLabel.text = [post subtitle];
+    postViewController.profileView.image = [post profile];
     [self.navigationController presentViewController:postViewController animated:YES completion:nil];
 
     

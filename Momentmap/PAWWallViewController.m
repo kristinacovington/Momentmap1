@@ -508,11 +508,10 @@ PAWWallPostCreateViewControllerDataSource>
         [self.wallPostsTableViewController highlightCellForPost:post];
         
         PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
-        postViewController.dataSource = self;
-        postViewController.imageView.image = [(PAWPost *) annotation photo];
-        postViewController.commentLabel.text = [(PAWPost *) annotation title];
-        postViewController.usernameLabel.text = [(PAWPost *) annotation subtitle];
-        postViewController.profileView.image = [(PAWPost *) annotation profile];
+        postViewController.imageView.image = [post photo];
+        postViewController.commentLabel.text = [post title];
+        postViewController.usernameLabel.text = [post subtitle];
+        postViewController.profileView.image = [post profile];
         [self.navigationController presentViewController:postViewController animated:YES completion:nil];
         
     } else if ([annotation isKindOfClass:[MKUserLocation class]]) {

@@ -33,6 +33,11 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 
 @interface FriendsViewController ()
 
+@property(strong, nonatomic) NSMutableArray *friendsArray;
+@property(strong, nonatomic) NSMutableArray *receivedRequestsArray;
+@property(strong, nonatomic) NSMutableArray *sentRequestsArray;
+@property(strong, nonatomic) NSMutableArray *searchResults;
+
 
 @end
 
@@ -49,6 +54,71 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
     }
     return self;
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.friendsArray = [[NSMutableArray alloc] init];
+    self.receivedRequestsArray = [[NSMutableArray alloc] init];
+    self.sentRequestsArray = [[NSMutableArray alloc] init];
+
+    self.searchResults = [[NSMutableArray alloc] init];
+
+
+    [self queryIt];
+
+
+}
+
+/*
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:NO];
+    [self queryIt];
+}
+*/
+-(void)queryIt{
+   // [_friendsArray addObject:[PFUser currentUser]];
+    PFRelation *relation = [[PFUser currentUser] objectForKey:friendsKey];
+    PFQuery *query = [relation query];
+    [query setLimit:1000];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         [self.friendsArray addObjectsFromArray:objects];
+    }];
+    
+    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+
+    
+    PFRelation *relationReceived = [[PFUser currentUser] objectForKey:receivedKey];
+    PFQuery *queryReceived = [relationReceived query];
+    [queryReceived setLimit:1000];
+    [queryReceived findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         [self.receivedRequestsArray addObjectsFromArray:objects];
+     }];
+    
+    queryReceived.cachePolicy = kPFCachePolicyCacheElseNetwork;
+
+    
+    PFRelation *relationSent = [[PFUser currentUser] objectForKey:sentKey];
+    PFQuery *querySent = [relationSent query];
+    [querySent setLimit:1000];
+    [querySent findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         [self.sentRequestsArray addObjectsFromArray:objects];
+     }];
+    
+    querySent.cachePolicy = kPFCachePolicyCacheElseNetwork;
+
+    for(PFUser *user in _receivedRequestsArray){
+        if([_sentRequestsArray containsObject: user]){
+            [_friendsArray addObject:user];
+        }
+    }
+    
+    
+}
+
 
 #pragma mark -
 #pragma mark UIViewController
@@ -77,16 +147,46 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return PAWSettingsTableViewNumberOfSections;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return 0;
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView){
+        
+        return [self.searchResults count];
+    }
+    else {
+
+        return [_friendsArray count];
+    
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        return nil;
+    static NSString *cellID = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    
+    cell.textLabel.text = @"TEST";
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+
+    if(tableView == self.searchDisplayController.searchResultsTableView){
+        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
+    }
+    else {
+        PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = user.username;
+    }
+ 
+       return cell;
 }
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
@@ -98,7 +198,44 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 
 // Called after the user changes the selection.
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(_friendsArray != Nil){
+        //This is the user(s) to set the post to
+        //TODO send post ref to this viewcontroller
+        //PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
     }
+}
+
+-(void)filterResults:(NSString *)searchTerm  {
+    [self.searchResults removeAllObjects];
+    PFQuery *query = [PFUser query];
+   
+    //query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+
+    [query whereKey:@"username" containsString:[searchTerm lowercaseString]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        for(PFUser *user in objects){
+            NSLog(@"USERNAME");
+            NSLog(user[@"username"]);
+            if(![self.searchResults containsObject:user[@"username"]])
+                 [self.searchResults addObject:user[@"username"]];
+        }
+        
+        //[self.searchResults addObjectsFromArray:objects];
+        [self.searchDisplayController.searchResultsTableView reloadData];
+
+        
+    }];
+    
+    
+}
 
 
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterResults:searchString];
+
+    return YES;
+}
 @end
