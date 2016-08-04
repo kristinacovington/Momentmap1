@@ -503,18 +503,34 @@ PAWWallPostCreateViewControllerDataSource>
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     id<MKAnnotation> annotation = [view annotation];
+    
     if ([annotation isKindOfClass:[PAWPost class]]) {
+
         PAWPost *post = [view annotation];
         [self.wallPostsTableViewController highlightCellForPost:post];
         
         PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
-        postViewController.imageView.image = [post photo];
-        postViewController.commentLabel.text = [post title];
-        postViewController.usernameLabel.text = [post subtitle];
-        postViewController.profileView.image = [post profile];
-        [self.navigationController presentViewController:postViewController animated:YES completion:nil];
+        postViewController.delegate = self;
+        
+        
+        
+        postViewController.post = (PAWPost *) annotation;
+        
+        
+        /*
+        postViewController.imageView.image = [(PAWPost *) annotation photo];
+        postViewController.commentLabel.text = [(PAWPost *) annotation title];
+        postViewController.usernameLabel.text = [(PAWPost *) annotation subtitle];
+        postViewController.profileView.image = [(PAWPost *) annotation profile];
+        
+        
+        [postViewController setImage:[(PAWPost *) annotation photo] setComment:[(PAWPost *) annotation title] setUsername:[(PAWPost *) annotation subtitle] setProfile:[(PAWPost *) annotation profile]];
+        */
+        [self presentViewController:postViewController animated:YES completion:nil];
+        
         
     } else if ([annotation isKindOfClass:[MKUserLocation class]]) {
+
         // Center the map on the user's current location:
         CLLocationAccuracy filterDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:PAWUserDefaultsFilterDistanceKey];
         MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate,

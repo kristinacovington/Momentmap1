@@ -43,6 +43,7 @@
 }
 
 - (instancetype)initWithPFObject:(PFObject *)object {
+    
     PFGeoPoint *geoPoint = object[PAWParsePostLocationKey];
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(geoPoint.latitude, geoPoint.longitude);
     NSString *title = object[PAWParsePostTextKey];
@@ -53,13 +54,21 @@
         self.object = object;
         self.user = object[PAWParsePostUserKey];
         
-        //PFFile *photoFile = self.object[kPAPPostPictureKey];
+        PFFile *photoFile = self.object[kPAPPostPictureKey];
         PFFile *profileFile = self.user[kPAPProfilePictureKey];
         
-        //self.photo = [UIImage imageWithData:photoFile];
+  
+
         [profileFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 self.profile = [UIImage imageWithData:data];
+                // image can now be set on a UIImageView
+            }
+        }];
+        
+        [photoFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                self.photo = [UIImage imageWithData:data];
                 // image can now be set on a UIImageView
             }
         }];

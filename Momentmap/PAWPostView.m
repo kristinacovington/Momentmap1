@@ -52,12 +52,53 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
 
 
 }
 
+
+
+-(void) setImage: (UIImage *) imageViewImage setComment: (NSString *) commentLabelText setUsername: (NSString *) usernameLabelText setProfile: (UIImage *) profileViewImage {
+    
+    self.imageView.image = imageViewImage;
+    self.commentLabel.text = commentLabelText;
+    self.usernameLabel.text = usernameLabelText;
+    self.profileView.image = profileViewImage;
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    
+    PFUser *user = self.post.object[PAWParsePostUserKey];
+    
+    PFFile *photoFile = self.post.object[kPAPPostPictureKey];
+    PFFile *profileFile = user[kPAPProfilePictureKey];
+    
+    
+    
+    [profileFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            self.profileView.image = [UIImage imageWithData:data];
+            // image can now be set on a UIImageView
+        }
+    }];
+    
+    [photoFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            self.imageView.image = [UIImage imageWithData:data];
+            // image can now be set on a UIImageView
+        }
+    }];
+
+    
+    //self.imageView.image = [(PAWPost *) self.post photo];
+    self.commentLabel.text = [(PAWPost *) self.post subtitle];
+    self.usernameLabel.text = [(PAWPost *) self.post title];
+    //self.profileView.image = [(PAWPost *) self.post profile];
     
 }
 

@@ -190,14 +190,32 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     PFObject *object = [self.objects objectAtIndex:indexPath.row];
     PAWPost *post = [[PAWPost alloc] initWithPFObject:object];
     
+    
     PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
-    postViewController.imageView.image = [post photo];
+    postViewController.delegate = self;
+    
+
+    postViewController.post = post;
+    
+  /*
+    postViewController.imageView.image = post.photo;
+    postViewController.commentLabel.text = post.title;
+    postViewController.usernameLabel.text = post.subtitle;
+    postViewController.profileView.image = post.profile;
+  */
+    
+    /* [postViewController setImage:post.photo setComment:post.title setUsername:post.subtitle setProfile:post.profile];
+    */
+    [self presentViewController:postViewController animated:YES completion:nil];
+    /*
+    PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
+    postViewController.imageView.image = [post.photo];
     postViewController.commentLabel.text = [post title];
     postViewController.usernameLabel.text = [post subtitle];
     postViewController.profileView.image = [post profile];
-    [self.navigationController presentViewController:postViewController animated:YES completion:nil];
+    [self presentViewController:postViewController animated:YES completion:nil];
 
-    
+    */
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -224,6 +242,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
 
 - (void)highlightCellForPost:(PAWPost *)post {
     // Find the cell matching this object.
+    
     NSUInteger index = 0;
     for (PFObject *object in [self objects]) {
         PAWPost *postFromObject = [[PAWPost alloc] initWithPFObject:object];
@@ -232,7 +251,20 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:PAWWallPostsTableViewMainSection];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
             [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            /*
+            PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
+            postViewController.delegate = self;
             
+            postViewController.imageView.image = [(PAWPost *) post photo];
+            postViewController.commentLabel.text = [(PAWPost *) post title];
+            postViewController.usernameLabel.text = [(PAWPost *) post subtitle];
+            postViewController.profileView.image = [(PAWPost *) post profile];
+            
+            /*
+             [postViewController setImage:[(PAWPost *) annotation photo] setComment:[(PAWPost *) annotation title] setUsername:[(PAWPost *) annotation subtitle] setProfile:[(PAWPost *) annotation profile]];
+             
+            [self presentViewController:postViewController animated:YES completion:nil];
+            */
             return;
         }
         index++;
