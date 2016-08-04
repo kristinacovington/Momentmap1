@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="searchBar" destination="2Cj-gC-JjY" id="kb2-kA-bb0"/>
                 <outlet property="searchDisplayController" destination="a6c-ym-JAs" id="nMc-ab-Ujl"/>
+                <outlet property="sendButton" destination="DcH-8Z-MJY" id="0Qs-1v-DEv"/>
                 <outlet property="tableView" destination="uAV-Kl-8G7" id="hUX-w1-RSY"/>
                 <outlet property="view" destination="iN0-l3-epB" id="AgY-ur-aPD"/>
             </connections>
@@ -33,6 +34,16 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" style="plain" id="EcN-4P-R7r">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DcH-8Z-MJY">
+                                    <rect key="frame" x="268" y="7" width="36" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Send"/>
+                                    <connections>
+                                        <action selector="send:" destination="-1" eventType="touchUpInside" id="q9X-gE-B5b"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
@@ -47,7 +58,7 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="uAV-Kl-8G7">
                     <rect key="frame" x="0.0" y="107" width="320" height="461"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="NZe-0X-AJ0"/>
                         <outlet property="delegate" destination="-1" id="dTj-I1-6yk"/>
@@ -55,7 +66,7 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="69" y="496"/>
+            <point key="canvasLocation" x="-23" y="455"/>
         </view>
         <searchDisplayController id="a6c-ym-JAs">
             <connections>

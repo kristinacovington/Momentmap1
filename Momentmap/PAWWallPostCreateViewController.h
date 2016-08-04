@@ -30,7 +30,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 
-
+@property bool shouldClose;
 
 - (IBAction)cancelPost:(id)sender;
 - (IBAction)postPost:(id)sender;

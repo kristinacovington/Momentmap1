@@ -20,6 +20,9 @@
 #import "PAWConstants.h"
 #import "PAWConfigManager.h"
 
+#import "FriendsViewController.h"
+
+
 @interface PAWWallPostCreateViewController ()
 
 @property (nonatomic, assign) NSUInteger maximumCharacterCount;
@@ -48,8 +51,16 @@
 #pragma mark -
 #pragma mark UIViewController
 
+-(void) viewDidAppear:(BOOL)animated {
+    if(self.shouldClose) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.shouldClose = false;
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     //EDITED: putting image in imageview
     self.imageView.image = self.image;
@@ -141,12 +152,12 @@
     
     
     [postObject setObject:file forKey:kPAPPostPictureKey];
-    [postObject saveInBackground];
+    //[postObject saveInBackground];
     NSLog(@"%@", user);
     
     
     
-    
+   /*
     [postObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"Couldn't save!");
@@ -169,8 +180,20 @@
             NSLog(@"Failed to save.");
         }
     }];
+    */
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    FriendsViewController *viewController = [[FriendsViewController alloc] initWithNibName:nil bundle:nil];
+    
+    viewController.delegate = self;
+    
+    viewController.postObject = postObject;
+
+    [self presentViewController:viewController animated:YES completion:nil];
+
+    self.shouldClose = true;
+
+
+    
 }
 
 

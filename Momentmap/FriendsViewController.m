@@ -16,10 +16,11 @@
 
 #import "FriendsViewController.h"
 
-#import <Parse/Parse.h>
 
 #import "PAWConstants.h"
 #import "PAWConfigManager.h"
+
+
 
 typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 {
@@ -29,7 +30,6 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     PAWSettingsTableViewNumberOfSections
 };
 
-static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 
 @interface FriendsViewController ()
 
@@ -58,6 +58,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     self.friendsArray = [[NSMutableArray alloc] init];
     self.receivedRequestsArray = [[NSMutableArray alloc] init];
     self.sentRequestsArray = [[NSMutableArray alloc] init];
@@ -66,6 +67,8 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 
 
     [self queryIt];
+    
+    self.sendButton.enabled = NO;
 
 
 }
@@ -142,6 +145,40 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)send:(id)sender {
+    [self.postObject saveInBackground];
+
+    [self.postObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Couldn't save!");
+            NSLog(@"%@", error);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error userInfo][@"error"]
+                                                                message:nil
+                                                               delegate:self
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"Ok", nil];
+            [alertView show];
+            return;
+        }
+        if (succeeded) {
+            NSLog(@"Successfully saved!");
+            NSLog(@"%@", self.postObject);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:PAWPostCreatedNotification object:nil];
+            });
+        } else {
+            NSLog(@"Failed to save.");
+        }
+    }];
+    
+    UIViewController *vc = [self parentViewController];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [vc dismissModalViewControllerAnimated:YES];
+
+    
+
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -173,14 +210,14 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
     
     cell.textLabel.text = @"TEST";
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
 
     if(tableView == self.searchDisplayController.searchResultsTableView){
-        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row][@"username"];
     }
     else {
-        PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
+        PFUser *user = [_friendsArray objectAtIndex:indexPath.row][@"username"];
         cell.textLabel.text = user.username;
     }
  
@@ -198,6 +235,59 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 
 // Called after the user changes the selection.
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+    //how about check icon instead
+    
+    UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
+
+    //if(cell.imageView)
+    //etc
+    //learn how to add user to relation or submit post from here
+    //instead of below
+
+    if(aTableView == self.searchDisplayController.searchResultsTableView){
+        PFUser *user = [_searchResults objectAtIndex:indexPath.row];
+        
+        
+        if([_friendsArray containsObject:user]) {
+            
+        }
+        else if ( [_receivedRequestsArray containsObject:user] ) {
+            PFRelation *relation = [[PFUser currentUser] relationForKey:friendsKey];
+            [relation addObject: user];
+            
+            PFRelation *relation2 = [user relationForKey:friendsKey];
+            [relation2 addObject: [PFUser currentUser]];
+            
+            [user saveInBackground];
+
+            [[PFUser currentUser] saveInBackground];
+
+        }
+        else if ( [_sentRequestsArray containsObject:user] ) {
+            
+        }
+        else {
+            PFRelation *relation = [[PFUser currentUser] relationForKey:sentKey];
+            [relation addObject: user];
+            
+            PFRelation *relation2 = [user relationForKey:receivedKey];
+            [relation2 addObject: [PFUser currentUser] ];
+            
+            [user saveInBackground];
+            
+            [[PFUser currentUser] saveInBackground];
+        }
+    }
+    else {
+        PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
+        
+        PFRelation *relation = [self.postObject relationForKey:@"Viewers"];
+        [relation addObject: user];
+        
+
+    }
+   
     if(_friendsArray != Nil){
         //This is the user(s) to set the post to
         //TODO send post ref to this viewcontroller
@@ -207,22 +297,42 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 1;
 
 -(void)filterResults:(NSString *)searchTerm  {
     [self.searchResults removeAllObjects];
-    PFQuery *query = [PFUser query];
+    
+    NSMutableArray *newSearchArray = [[NSMutableArray alloc] init];
+    //PFQuery *query = [PFUser query];
+    
+    PFQuery *queryCapitalizedString = [PFUser query];
+    [queryCapitalizedString whereKey:@"username" containsString:[searchTerm capitalizedString]];
+    
+    //query converted user text to lowercase
+    PFQuery *queryLowerCaseString = [PFUser query];
+    [queryLowerCaseString whereKey:@"username" containsString:[searchTerm lowercaseString]];
+    
+    //query real user text
+    PFQuery *querySearchBarString = [PFUser query];
+    [querySearchBarString whereKey:@"username" containsString:searchTerm];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryCapitalizedString,queryLowerCaseString, querySearchBarString,nil]];
+    
    
     //query.cachePolicy = kPFCachePolicyCacheElseNetwork;
 
-    [query whereKey:@"username" containsString:[searchTerm lowercaseString]];
-    
+    //[query whereKey:@"username" containsString:[searchTerm lowercaseString]];
+   // [query whereKey:@"username" containsString:searchTerm];
+   // [query whereKey:@"username" containsString:[searchTerm uppercaseString]];
+
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         for(PFUser *user in objects){
-            NSLog(@"USERNAME");
-            NSLog(user[@"username"]);
-            if(![self.searchResults containsObject:user[@"username"]])
-                 [self.searchResults addObject:user[@"username"]];
+           // NSLog(@"USERNAME");
+           // NSLog(user[@"username"]);
+            if(![newSearchArray containsObject:user])
+                 [newSearchArray addObject:user];
         }
         
         //[self.searchResults addObjectsFromArray:objects];
+        self.searchResults = newSearchArray;
         [self.searchDisplayController.searchResultsTableView reloadData];
 
         
