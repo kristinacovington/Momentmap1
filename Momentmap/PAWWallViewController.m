@@ -97,21 +97,20 @@ PAWWallPostCreateViewControllerDataSource>
                                                                              action:@selector(postButtonSelected:)];
     
 
-    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"setting.png" ]
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"setting.png" ]
                                                                              style:UIBarButtonItemStylePlain                                                                    
                                                                             target:self
                                                                             action:@selector(settingsButtonSelected:)];
-    UIBarButtonItem *friends = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"friends.png" ]
+   /* UIBarButtonItem *friends = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"friends.png" ]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(friendsButtonSelected:)];
-    
+    */
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
     
-    for(UIBarButtonItem *item in self.navigationItem.leftBarButtonItems)
-        item.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
     
-    self.navigationItem.leftBarButtonItems = @[settings, friends];
+   // self.navigationItem.leftBarButtonItems = @[settings, friends];
 
     self.mapView.region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.332495f, -122.029095f),
                                                  MKCoordinateSpanMake(0.008516f, 0.021801f));
@@ -385,12 +384,15 @@ PAWWallPostCreateViewControllerDataSource>
     [self presentWallPostCreateViewController];
 
 }
-
+/*
 - (IBAction)friendsButtonSelected:(id)sender {
     
     [self presentFriendsViewController];
-    
+   
+ 
+
 }
+ */
 
 #pragma mark -
 #pragma mark CLLocationManagerDelegate methods and helpers

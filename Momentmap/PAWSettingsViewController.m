@@ -16,7 +16,7 @@
 #import "PAWSettingsViewController.h"
 
 #import <Parse/Parse.h>
-
+#import "FriendsViewController.h"
 #import "PAWConstants.h"
 #import "PAWConfigManager.h"
 #import "UIImage+ResizeAdditions.h"
@@ -565,6 +565,20 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
                                               cancelButtonTitle:@"Delete"
                                               otherButtonTitles:@"Cancel", nil];
     [deleteAlertView show];
+}
+
+- (IBAction)friends:(id)sender {
+    
+    FriendsViewController *viewController = [[FriendsViewController alloc] initWithNibName:nil bundle:nil];
+    
+   // viewController.delegate = self;
+    
+    
+    [self presentViewController:viewController animated:NO completion:nil];
+    
+    //[self dismissViewControllerAnimated:NO completion:nil];
+
+    
 }
 
 @end

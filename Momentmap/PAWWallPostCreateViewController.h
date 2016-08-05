@@ -35,7 +35,7 @@
 
 - (IBAction)cancelPost:(id)sender;
 - (IBAction)postPost:(id)sender;
-- (IBAction)takePhotoPost:(id)sender;
+//- (IBAction)takePhotoPost:(id)sender;
 
 
 @end

@@ -31,6 +31,9 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *change;
 
+@property (strong, nonatomic) IBOutlet UIButton *friends;
+
+
 
 //@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
@@ -40,6 +43,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 
 - (IBAction)deleteAccount:(id)sender;
+
+- (IBAction)friends:(id)sender;
+
 
 @property(nonatomic, strong) UIImageView *imageView;
 

@@ -233,7 +233,7 @@
 
 
 //EDITED buttons
-
+/*
 - (IBAction)takePhotoPost:(id)sender {
 
     
@@ -262,6 +262,8 @@
 
 
 }
+ */
+
 
 //EDITED: Camera methods
 #pragma mark - Image Picker Controller delegate methods
