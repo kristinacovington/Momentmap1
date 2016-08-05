@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 
+
+
 - (IBAction)postButtonSelected:(id)sender;
 
 @end
@@ -34,5 +36,7 @@
 
 - (void)highlightCellForPost:(PAWPost *)post;
 - (void)unhighlightCellForPost:(PAWPost *)post;
+
+
 
 @end

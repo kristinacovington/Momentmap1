@@ -20,8 +20,6 @@
 #import "PAWConstants.h"
 #import "PAWConfigManager.h"
 
-
-
 typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 {
     PAWSettingsTableViewSectionDistance = 0,
@@ -89,7 +87,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
          [self.friendsArray addObjectsFromArray:objects];
     }];
     
-    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    //query.cachePolicy = kPFCachePolicyCacheElseNetwork;
 
     
     PFRelation *relationReceived = [[PFUser currentUser] objectForKey:receivedKey];
@@ -100,7 +98,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
          [self.receivedRequestsArray addObjectsFromArray:objects];
      }];
     
-    queryReceived.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    //queryReceived.cachePolicy = kPFCachePolicyCacheElseNetwork;
 
     
     PFRelation *relationSent = [[PFUser currentUser] objectForKey:sentKey];
@@ -111,7 +109,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
          [self.sentRequestsArray addObjectsFromArray:objects];
      }];
     
-    querySent.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    //querySent.cachePolicy = kPFCachePolicyCacheElseNetwork;
 
     for(PFUser *user in _receivedRequestsArray){
         if([_sentRequestsArray containsObject: user]){
@@ -142,11 +140,14 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 #pragma mark UINavigationBar-based actions
 
 - (IBAction)done:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (IBAction)send:(id)sender {
+    
+    
     [self.postObject saveInBackground];
+    
 
     [self.postObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
@@ -173,8 +174,8 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     
     UIViewController *vc = [self parentViewController];
 
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [vc dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [vc dismissModalViewControllerAnimated:NO];
 
     
 
@@ -284,6 +285,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
         
         PFRelation *relation = [self.postObject relationForKey:@"Viewers"];
         [relation addObject: user];
+        
         
 
     }

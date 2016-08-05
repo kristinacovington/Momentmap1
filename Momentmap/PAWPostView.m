@@ -100,6 +100,8 @@
     self.usernameLabel.text = [(PAWPost *) self.post title];
     //self.profileView.image = [(PAWPost *) self.post profile];
     
+    [self.post.object deleteInBackground];
+    
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
@@ -118,7 +120,14 @@
 #pragma mark UINavigationBar-based actions
 
 - (IBAction)cancelPost:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+    self.post = nil;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:PAWPostCreatedNotification object:nil];
+    });
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

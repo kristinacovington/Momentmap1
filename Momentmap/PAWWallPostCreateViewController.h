@@ -32,8 +32,10 @@
 
 @property bool shouldClose;
 
+
 - (IBAction)cancelPost:(id)sender;
 - (IBAction)postPost:(id)sender;
 - (IBAction)takePhotoPost:(id)sender;
+
 
 @end

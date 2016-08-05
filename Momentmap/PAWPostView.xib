@@ -19,23 +19,35 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRN-0Y-Gh4" userLabel="Comment Label">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRN-0Y-Gh4" userLabel="Comment Label">
                     <rect key="frame" x="0.0" y="143" width="320" height="85"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eIq-GI-8Dc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eIq-GI-8Dc">
                     <rect key="frame" x="0.0" y="62" width="100" height="81"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Ix9-II-CRw"/>
+                        <constraint firstAttribute="height" constant="81" id="Rzm-5Y-THK"/>
+                    </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dA5-qt-OLd">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dA5-qt-OLd">
                     <rect key="frame" x="0.0" y="229" width="320" height="339"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="339" id="0fi-rD-idh"/>
+                    </constraints>
                 </imageView>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wZS-s6-SbY">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZS-s6-SbY">
                     <rect key="frame" x="0.0" y="18" width="320" height="44"/>
+                    <textAttributes key="titleTextAttributes">
+                        <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </textAttributes>
                     <items>
                         <navigationItem title="View Post" id="wvk-RW-aUR">
                             <barButtonItem key="leftBarButtonItem" title="Done" id="lLZ-KG-26y">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="cancelPost:" destination="-1" id="UbT-cZ-hUy"/>
                                 </connections>
@@ -43,15 +55,34 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxB-QR-uFi" userLabel="Username Label">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxB-QR-uFi" userLabel="Username Label">
                     <rect key="frame" x="101" y="62" width="219" height="81"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="63" y="384"/>
+            <constraints>
+                <constraint firstItem="wZS-s6-SbY" firstAttribute="leading" secondItem="eIq-GI-8Dc" secondAttribute="leading" id="1Ya-cf-N6x"/>
+                <constraint firstItem="dA5-qt-OLd" firstAttribute="leading" secondItem="DRN-0Y-Gh4" secondAttribute="leading" id="4VM-aF-zTI"/>
+                <constraint firstItem="dA5-qt-OLd" firstAttribute="trailing" secondItem="DRN-0Y-Gh4" secondAttribute="trailing" id="8TL-dV-774"/>
+                <constraint firstItem="vxB-QR-uFi" firstAttribute="leading" secondItem="eIq-GI-8Dc" secondAttribute="trailing" constant="1" id="EHX-gC-m23"/>
+                <constraint firstItem="vxB-QR-uFi" firstAttribute="trailing" secondItem="DRN-0Y-Gh4" secondAttribute="trailing" id="OkE-fn-cTX"/>
+                <constraint firstAttribute="bottom" secondItem="dA5-qt-OLd" secondAttribute="bottom" id="RrI-UL-7fg"/>
+                <constraint firstItem="eIq-GI-8Dc" firstAttribute="bottom" secondItem="vxB-QR-uFi" secondAttribute="bottom" id="Sfg-lI-GlJ"/>
+                <constraint firstItem="DRN-0Y-Gh4" firstAttribute="top" secondItem="vxB-QR-uFi" secondAttribute="bottom" id="Ucg-nZ-1jl"/>
+                <constraint firstItem="dA5-qt-OLd" firstAttribute="top" secondItem="DRN-0Y-Gh4" secondAttribute="bottom" constant="1" id="VrE-cU-oOR"/>
+                <constraint firstItem="eIq-GI-8Dc" firstAttribute="top" secondItem="vxB-QR-uFi" secondAttribute="top" id="Wht-Zn-9lp"/>
+                <constraint firstAttribute="trailing" secondItem="dA5-qt-OLd" secondAttribute="trailing" id="Zef-ra-lGk"/>
+                <constraint firstItem="eIq-GI-8Dc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="a0g-aq-58k"/>
+                <constraint firstItem="eIq-GI-8Dc" firstAttribute="leading" secondItem="DRN-0Y-Gh4" secondAttribute="leading" id="lXb-2Y-VuP"/>
+                <constraint firstItem="eIq-GI-8Dc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="62" id="qTD-L1-Qh6"/>
+                <constraint firstItem="wZS-s6-SbY" firstAttribute="bottom" secondItem="vxB-QR-uFi" secondAttribute="top" id="qXM-mL-2Di"/>
+                <constraint firstItem="wZS-s6-SbY" firstAttribute="trailing" secondItem="vxB-QR-uFi" secondAttribute="trailing" id="sQl-vV-rhM"/>
+            </constraints>
+            <point key="canvasLocation" x="2" y="19"/>
         </view>
     </objects>
 </document>

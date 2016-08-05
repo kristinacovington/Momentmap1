@@ -110,7 +110,7 @@
 
 - (IBAction)closeButtonPressed:(id)sender {
     [self dismissKeyboard];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark -
@@ -187,6 +187,12 @@
     
     PFUser *user = [PFUser user];
     user.username = username;
+    
+    PFACL *readOnlyACL = [PFACL ACL];
+    [readOnlyACL setPublicReadAccess:YES];
+    [readOnlyACL setPublicWriteAccess:YES];
+    user.ACL = readOnlyACL;
+    
     user.password = password;
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
@@ -207,7 +213,7 @@
         [activityView.activityIndicator stopAnimating];
         [activityView removeFromSuperview];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
         [self.delegate newUserViewControllerDidSignup:self];
     }];
 }

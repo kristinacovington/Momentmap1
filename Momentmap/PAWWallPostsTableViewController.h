@@ -25,4 +25,6 @@
 
 @property (nonatomic, weak) id<PAWWallPostsTableViewControllerDataSource> dataSource;
 
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+
 @end

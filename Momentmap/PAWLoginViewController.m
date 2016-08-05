@@ -5,11 +5,12 @@
 //  Created by Kristina Covington on 6/25/16.
 //  Copyright © 2016 Kristina Covington. All rights reserved.
 //
-
 #import "PAWLoginViewController.h"
 
 #import <Parse/Parse.h>
-//#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+
+
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "PAWActivityView.h"
@@ -105,7 +106,7 @@ PAWNewUserViewControllerDelegate>
 
 - (IBAction)loginWithFacebookPressed:(id)sender {
     // Set up activity view
-    /*self.activityViewVisible = YES;
+    self.activityViewVisible = YES;
     // Login PFUser using facebook
     [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"public_profile"] block:^(PFUser *user, NSError *error) {
         if (!user) {
@@ -146,7 +147,7 @@ PAWNewUserViewControllerDelegate>
                 }
             }];
         }
-    }];*/
+    }];
 }
 
 - (IBAction)signUpPressed:(id)sender {
@@ -174,7 +175,7 @@ PAWNewUserViewControllerDelegate>
 - (void)presentNewUserViewController {
     PAWNewUserViewController *viewController = [[PAWNewUserViewController alloc] initWithNibName:nil bundle:nil];
     viewController.delegate = self;
-    [self.navigationController presentViewController:viewController animated:YES completion:nil];
+    [self.navigationController presentViewController:viewController animated:NO completion:nil];
 }
 
 #pragma mark Delegate

@@ -32,7 +32,6 @@
 
 @property (nonatomic, strong) PFFile *photoFile;
 
-
 @end
 
 @implementation PAWWallPostCreateViewController
@@ -53,14 +52,13 @@
 
 -(void) viewDidAppear:(BOOL)animated {
     if(self.shouldClose) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
         self.shouldClose = false;
     }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+
     
     //EDITED: putting image in imageview
     self.imageView.image = self.image;
@@ -103,7 +101,7 @@
 #pragma mark UINavigationBar-based actions
 
 - (IBAction)cancelPost:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (IBAction)postPost:(id)sender {
@@ -135,7 +133,7 @@
     // Use PFACL to restrict future modifications to this object.
     PFACL *readOnlyACL = [PFACL ACL];
     [readOnlyACL setPublicReadAccess:YES];
-    [readOnlyACL setPublicWriteAccess:NO];
+    [readOnlyACL setPublicWriteAccess:YES];
     postObject.ACL = readOnlyACL;
     
     
@@ -188,7 +186,7 @@
     
     viewController.postObject = postObject;
 
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self presentViewController:viewController animated:NO completion:nil];
 
     self.shouldClose = true;
 
@@ -257,7 +255,7 @@
         //picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
-        [self presentViewController:picker animated:YES completion:NULL];
+        [self presentViewController:picker animated:NO completion:NULL];
         
     }
 
@@ -276,13 +274,13 @@
         self.image = chosenImage;
 
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:NO completion:NULL];
     
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:NO completion:NULL];
     
 }
 
@@ -334,5 +332,15 @@
     
     return enabled;
 }
+
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 @end

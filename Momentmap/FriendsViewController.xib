@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,16 +19,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" id="i5m-24-sfL">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5m-24-sfL">
                     <rect key="frame" x="0.0" y="19" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </textAttributes>
                     <items>
                         <navigationItem title="Friends" id="77O-GS-aEc">
                             <barButtonItem key="leftBarButtonItem" style="plain" id="16N-e1-B23">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="py3-6P-nXs" userLabel="Done">
                                     <rect key="frame" x="16" y="7" width="71" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Done"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                    <state key="normal" title="Done">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                     <connections>
                                         <action selector="done:" destination="-1" eventType="touchUpInside" id="91K-5t-V61"/>
                                     </connections>
@@ -38,27 +43,32 @@
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DcH-8Z-MJY">
                                     <rect key="frame" x="268" y="7" width="36" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Send"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Send">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                     <connections>
                                         <action selector="send:" destination="-1" eventType="touchUpInside" id="q9X-gE-B5b"/>
                                     </connections>
                                 </button>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <searchBar contentMode="redraw" id="2Cj-gC-JjY">
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2Cj-gC-JjY">
                     <rect key="frame" x="0.0" y="63" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="barTintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="UyZ-o1-jlJ"/>
                     </connections>
                 </searchBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="uAV-Kl-8G7">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="uAV-Kl-8G7">
                     <rect key="frame" x="0.0" y="107" width="320" height="461"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="sectionIndexColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="NZe-0X-AJ0"/>
                         <outlet property="delegate" destination="-1" id="dTj-I1-6yk"/>
@@ -66,7 +76,19 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="-23" y="455"/>
+            <constraints>
+                <constraint firstItem="uAV-Kl-8G7" firstAttribute="top" secondItem="2Cj-gC-JjY" secondAttribute="bottom" id="BvG-Yl-qqh"/>
+                <constraint firstAttribute="bottom" secondItem="uAV-Kl-8G7" secondAttribute="bottom" id="J2A-fO-i6L"/>
+                <constraint firstAttribute="trailing" secondItem="i5m-24-sfL" secondAttribute="trailing" id="JK8-no-ODy"/>
+                <constraint firstItem="i5m-24-sfL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PuG-Nv-hAi"/>
+                <constraint firstItem="uAV-Kl-8G7" firstAttribute="leading" secondItem="2Cj-gC-JjY" secondAttribute="leading" id="R0T-CM-Jb7"/>
+                <constraint firstItem="2Cj-gC-JjY" firstAttribute="trailing" secondItem="i5m-24-sfL" secondAttribute="trailing" id="XzK-6a-4fu"/>
+                <constraint firstItem="2Cj-gC-JjY" firstAttribute="top" secondItem="i5m-24-sfL" secondAttribute="bottom" id="c7T-BQ-veG"/>
+                <constraint firstItem="i5m-24-sfL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="19" id="fCL-bZ-t6x"/>
+                <constraint firstItem="uAV-Kl-8G7" firstAttribute="trailing" secondItem="2Cj-gC-JjY" secondAttribute="trailing" id="gFA-d1-405"/>
+                <constraint firstItem="2Cj-gC-JjY" firstAttribute="leading" secondItem="i5m-24-sfL" secondAttribute="leading" id="suj-m0-TKb"/>
+            </constraints>
+            <point key="canvasLocation" x="41" y="506"/>
         </view>
         <searchDisplayController id="a6c-ym-JAs">
             <connections>

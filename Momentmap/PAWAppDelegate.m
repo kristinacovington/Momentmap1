@@ -7,12 +7,9 @@
 //
 
 #import "PAWAppDelegate.h"
-
 #import <Parse/Parse.h>
-//#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-
-
 #import "PAWConstants.h"
 #import "PAWConfigManager.h"
 #import "PAWLoginViewController.h"
@@ -39,11 +36,13 @@ PAWSettingsViewControllerDelegate>
     [Parse setApplicationId:@"q5pHAN13XctkfVgn7ys6NmwJZhN6mKAgUxQUN2ve" clientKey:@"5cf97LADTGabos3OPsaa9k53HO8Wzcqpy5pzRj0B"];
    
     // PFFacebookUtils initialization
-    //[PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     // ****************************************************************************
     
     // Set the global tint on the navigation bar
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:102.0f green:0.0f blue:102.0f alpha:1.0f]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.0 green:0.0f blue:0.0f alpha:1.0f]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+
     
     // Setup default NSUserDefaults
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -56,7 +55,7 @@ PAWSettingsViewControllerDelegate>
     
     if ([PFUser currentUser]) {
         // Present wall straight-away
-        [self presentWallViewControllerAnimated:NO];
+        [self presentWallViewControllerAnimated:YES];
     } else {
         // Go to the welcome screen and have them log in or create an account.
         [self presentLoginViewController];
@@ -123,13 +122,13 @@ PAWSettingsViewControllerDelegate>
     PAWSettingsViewController *settingsViewController = [[PAWSettingsViewController alloc] initWithNibName:nil bundle:nil];
     settingsViewController.delegate = self;
     settingsViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self.navigationController presentViewController:settingsViewController animated:YES completion:nil];
+    [self.navigationController presentViewController:settingsViewController animated:NO completion:nil];
 }
 
 #pragma mark Delegate
 
 - (void)settingsViewControllerDidLogout:(PAWSettingsViewController *)controller {
-    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller dismissViewControllerAnimated:NO completion:nil];
     [self presentLoginViewController];
 }
 

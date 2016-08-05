@@ -36,6 +36,8 @@ PAWWallPostCreateViewControllerDataSource>
 @property (nonatomic, assign) BOOL mapPinsPlaced;
 @property (nonatomic, assign) BOOL mapPannedSinceLocationUpdate;
 
+@property double filterMaxDistance;
+
 @property (nonatomic, strong) PAWWallPostsTableViewController *wallPostsTableViewController;
 
 @property (nonatomic, strong) NSMutableArray *allPosts;
@@ -82,25 +84,32 @@ PAWWallPostCreateViewControllerDataSource>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _filterMaxDistance = 1000.0;
     // Do any additional setup after loading the view from its nib.
     
     [self loadWallPostsTableViewController];
     
     // Set our nav bar items.
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Post"
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"post.png" ]
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(postButtonSelected:)];
     
 
-    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
-                                                                             style:UIBarButtonItemStylePlain
+    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"setting.png" ]
+                                                                             style:UIBarButtonItemStylePlain                                                                    
                                                                             target:self
                                                                             action:@selector(settingsButtonSelected:)];
-    UIBarButtonItem *friends = [[UIBarButtonItem alloc] initWithTitle:@"Friends"
+    UIBarButtonItem *friends = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"friends.png" ]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(friendsButtonSelected:)];
+    
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
+    
+    for(UIBarButtonItem *item in self.navigationItem.leftBarButtonItems)
+        item.tintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
     
     self.navigationItem.leftBarButtonItems = @[settings, friends];
 
@@ -194,7 +203,7 @@ PAWWallPostCreateViewControllerDataSource>
         UIImagePickerController *pickerController = [[UIImagePickerController alloc]
                                                      init];
         pickerController.delegate = self;
-        [self presentModalViewController:pickerController animated:YES];
+        [self presentModalViewController:pickerController animated:NO];
 
         
     } else {
@@ -203,8 +212,8 @@ PAWWallPostCreateViewControllerDataSource>
         picker.delegate = self;
         //picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
-        [self presentViewController:picker animated:YES completion:NULL];
+
+        [self presentViewController:picker animated:NO completion:NULL];
         
     }
 }
@@ -214,7 +223,7 @@ PAWWallPostCreateViewControllerDataSource>
     
     
     FriendsViewController *viewController = [[FriendsViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController presentViewController:viewController animated:YES completion:nil];
+    [self.navigationController presentViewController:viewController animated:NO completion:nil];
 
 }
 
@@ -252,7 +261,7 @@ PAWWallPostCreateViewControllerDataSource>
     //EDITED: set image
     viewController.image = image;
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:NO];
 
     
     [self.navigationController presentViewController:viewController animated:YES completion:nil];
@@ -264,7 +273,7 @@ PAWWallPostCreateViewControllerDataSource>
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:NO completion:NULL];
     
 }
 
@@ -278,7 +287,13 @@ PAWWallPostCreateViewControllerDataSource>
 #pragma mark NSNotificationCenter notification handlers
 
 - (void)distanceFilterDidChange:(NSNotification *)note {
-    CLLocationAccuracy filterDistance = [[note userInfo][kPAWFilterDistanceKey] doubleValue];
+    
+    
+    CLLocationAccuracy filterDistance = self.filterMaxDistance;
+    
+    
+
+    //CLLocation *location = (CLLocation *)[note object];
     
     if (self.circleOverlay != nil) {
         [self.mapView removeOverlay:self.circleOverlay];
@@ -296,7 +311,10 @@ PAWWallPostCreateViewControllerDataSource>
         MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, filterDistance * 2.0f, filterDistance * 2.0f);
         
         //EDITED: to center map on user location
-        //[self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
+       // if(location)
+        //    [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+        //else
+            [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
 
         
         [self.mapView setRegion:newRegion animated:YES];
@@ -461,7 +479,7 @@ PAWWallPostCreateViewControllerDataSource>
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay {
     /*if ([overlay isKindOfClass:[MKCircle class]]) {
         MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc] initWithCircle:self.circleOverlay];
-        [circleRenderer setFillColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.2f]];
+        [circleRenderer setFillColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.2]];
         [circleRenderer setStrokeColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.7f]];
         [circleRenderer setLineWidth:1.0f];
         return circleRenderer;
@@ -526,7 +544,11 @@ PAWWallPostCreateViewControllerDataSource>
         
         [postViewController setImage:[(PAWPost *) annotation photo] setComment:[(PAWPost *) annotation title] setUsername:[(PAWPost *) annotation subtitle] setProfile:[(PAWPost *) annotation profile]];
         */
-        [self presentViewController:postViewController animated:YES completion:nil];
+        if(![post.object[PAWParsePostUserKey] isEqual:[PFUser currentUser]]) {
+            [self presentViewController:postViewController animated:NO completion:nil];
+            [_wallPostsTableViewController.tableView reloadData];
+            
+        }
         
         
     } else if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -561,6 +583,8 @@ PAWWallPostCreateViewControllerDataSource>
 - (void)queryForAllPostsNearLocation:(CLLocation *)currentLocation withNearbyDistance:(CLLocationAccuracy)nearbyDistance {
     PFQuery *query = [PFQuery queryWithClassName:PAWParsePostsClassName];
     
+    [query whereKey:@"Viewers" equalTo: [PFUser currentUser]];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
     if (currentLocation == nil) {
         NSLog(@"%s got a nil location!", __PRETTY_FUNCTION__);
     }
@@ -573,9 +597,9 @@ PAWWallPostCreateViewControllerDataSource>
     
     // Query for posts sort of kind of near our current location.
     PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude];
-    [query whereKey:PAWParsePostLocationKey nearGeoPoint:point withinKilometers:PAWWallPostMaximumSearchDistance];
-    [query includeKey:PAWParsePostUserKey];
-    query.limit = PAWWallPostsSearchDefaultLimit;
+    //[query whereKey:PAWParsePostLocationKey nearGeoPoint:point withinKilometers:PAWWallPostMaximumSearchDistance];
+    //[query includeKey:PAWParsePostUserKey];
+    //query.limit = PAWWallPostsSearchDefaultLimit;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -590,19 +614,32 @@ PAWWallPostCreateViewControllerDataSource>
             NSMutableArray *newPosts = [[NSMutableArray alloc] initWithCapacity:PAWWallPostsSearchDefaultLimit];
             // (Cache the objects we make for the search in step 2:)
             NSMutableArray *allNewPosts = [[NSMutableArray alloc] initWithCapacity:[objects count]];
+            
+            double maxDistance = 0;
+
             for (PFObject *object in objects) {
+                
+                if([point distanceInKilometersTo:object[@"location"]] > maxDistance)
+                    maxDistance = [point distanceInKilometersTo:object[@"location"]];
+                
+
                 PAWPost *newPost = [[PAWPost alloc] initWithPFObject:object];
                 [allNewPosts addObject:newPost];
                 if (![_allPosts containsObject:newPost]) {
                     [newPosts addObject:newPost];
                 }
             }
+            
+            if(self.filterMaxDistance < maxDistance)
+                self.filterMaxDistance = maxDistance;
             // newPosts now contains our new objects.
             
             // 2. Find posts in allPosts that didn't make the cut.
             NSMutableArray *postsToRemove = [[NSMutableArray alloc] initWithCapacity:PAWWallPostsSearchDefaultLimit];
+            
+            
             for (PAWPost *currentPost in _allPosts) {
-                if (![allNewPosts containsObject:currentPost]) {
+                               if (![allNewPosts containsObject:currentPost]) {
                     [postsToRemove addObject:currentPost];
                 }
             }

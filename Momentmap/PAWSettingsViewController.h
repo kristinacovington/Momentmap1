@@ -27,11 +27,19 @@
 
 @property (nonatomic, weak) id<PAWSettingsViewControllerDelegate> delegate;
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *change;
 
+
+//@property (nonatomic, strong) IBOutlet UITableView *tableView;
+
+
+- (IBAction)logout:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *name;
+
+- (IBAction)deleteAccount:(id)sender;
 
 @property(nonatomic, strong) UIImageView *imageView;
 

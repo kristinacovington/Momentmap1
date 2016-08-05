@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		959B77A21D53FAA50004145A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B779F1D53FAA40004145A /* FBSDKCoreKit.framework */; };
+		959B77A31D53FAA50004145A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B77A01D53FAA50004145A /* FBSDKLoginKit.framework */; };
+		959B77A41D53FAA50004145A /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B77A11D53FAA50004145A /* ParseFacebookUtilsV4.framework */; };
+		959B77A61D542CD90004145A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959B77A51D542CD90004145A /* Launch Screen.storyboard */; };
 		95D9CF1E1D1F291E004A0D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF1D1D1F291E004A0D70 /* main.m */; };
 		95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF251D1F291E004A0D70 /* Main.storyboard */; };
 		95D9CF291D1F291E004A0D70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF281D1F291E004A0D70 /* Images.xcassets */; };
@@ -30,7 +34,6 @@
 		95D9CF851D1F33BB004A0D70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */; };
 		95D9CF871D1F35A4004A0D70 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF861D1F35A4004A0D70 /* info.plist */; };
 		95D9CFA31D1F3764004A0D70 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFA21D1F3764004A0D70 /* libz.1.1.3.tbd */; };
-		95D9CFAB1D1F3879004A0D70 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFAA1D1F3879004A0D70 /* FBSDKCoreKit.framework */; };
 		95D9CFB91D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFB81D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m */; };
 		95D9CFBB1D1F3BC8004A0D70 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFBA1D1F3BC8004A0D70 /* ParseUI.framework */; };
 		95D9CFBD1D1F3FAA004A0D70 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFBC1D1F3FAA004A0D70 /* QuartzCore.framework */; };
@@ -78,6 +81,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		959B779F1D53FAA40004145A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Momentmap/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		959B77A01D53FAA50004145A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Momentmap/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		959B77A11D53FAA50004145A /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = Momentmap/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		959B77A51D542CD90004145A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		95D9CF191D1F291E004A0D70 /* Momentmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momentmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D9CF1D1D1F291E004A0D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95D9CF261D1F291E004A0D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,7 +125,6 @@
 		95D9CF861D1F35A4004A0D70 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		95D9CF881D1F361A004A0D70 /* Anywall-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Anywall-Prefix.pch"; sourceTree = "<group>"; };
 		95D9CFA21D1F3764004A0D70 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
-		95D9CFAA1D1F3879004A0D70 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		95D9CFB71D1F3A82004A0D70 /* PAWWallPostCreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PAWWallPostCreateViewController.h; sourceTree = "<group>"; };
 		95D9CFB81D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAWWallPostCreateViewController.m; sourceTree = "<group>"; };
 		95D9CFBA1D1F3BC8004A0D70 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -159,6 +165,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				959B77A21D53FAA50004145A /* FBSDKCoreKit.framework in Frameworks */,
+				959B77A31D53FAA50004145A /* FBSDKLoginKit.framework in Frameworks */,
+				959B77A41D53FAA50004145A /* ParseFacebookUtilsV4.framework in Frameworks */,
 				95D9CFD91D1F41E8004A0D70 /* libsqlite3.tbd in Frameworks */,
 				95D9CFD51D1F40BD004A0D70 /* Bolts.framework in Frameworks */,
 				95D9CFD11D1F4048004A0D70 /* CoreGraphics.framework in Frameworks */,
@@ -176,7 +185,6 @@
 				95D9CFBD1D1F3FAA004A0D70 /* QuartzCore.framework in Frameworks */,
 				95D9CFA31D1F3764004A0D70 /* libz.1.1.3.tbd in Frameworks */,
 				95D9CFBB1D1F3BC8004A0D70 /* ParseUI.framework in Frameworks */,
-				95D9CFAB1D1F3879004A0D70 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +208,9 @@
 		95D9CF101D1F291E004A0D70 = {
 			isa = PBXGroup;
 			children = (
+				959B779F1D53FAA40004145A /* FBSDKCoreKit.framework */,
+				959B77A01D53FAA50004145A /* FBSDKLoginKit.framework */,
+				959B77A11D53FAA50004145A /* ParseFacebookUtilsV4.framework */,
 				95D9CF1B1D1F291E004A0D70 /* Momentmap */,
 				95D9CF351D1F291F004A0D70 /* MomentmapTests */,
 				95D9CF401D1F291F004A0D70 /* MomentmapUITests */,
@@ -254,6 +265,7 @@
 				95D9CF7C1D1F338B004A0D70 /* PAWSettingsViewController.xib */,
 				95D9CF7E1D1F338B004A0D70 /* PAWWallViewController.xib */,
 				95D9CF861D1F35A4004A0D70 /* info.plist */,
+				959B77A51D542CD90004145A /* Launch Screen.storyboard */,
 				95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */,
 				95D9CF1D1D1F291E004A0D70 /* main.m */,
 				95D9CF881D1F361A004A0D70 /* Anywall-Prefix.pch */,
@@ -380,7 +392,6 @@
 				95D9CFD31D1F40BD004A0D70 /* Parse.framework */,
 				95D9CFD41D1F40BD004A0D70 /* ParseFacebookUtils.framework */,
 				95D9CFBA1D1F3BC8004A0D70 /* ParseUI.framework */,
-				95D9CFAA1D1F3879004A0D70 /* FBSDKCoreKit.framework */,
 			);
 			name = "User Frameworks";
 			sourceTree = "<group>";
@@ -513,6 +524,7 @@
 				95D9CF801D1F338B004A0D70 /* PAWNewUserViewController.xib in Resources */,
 				95D9CF831D1F338B004A0D70 /* PAWWallViewController.xib in Resources */,
 				95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */,
+				959B77A61D542CD90004145A /* Launch Screen.storyboard in Resources */,
 				95D9CF291D1F291E004A0D70 /* Images.xcassets in Resources */,
 				95D9CF871D1F35A4004A0D70 /* info.plist in Resources */,
 				95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */,
@@ -801,6 +813,7 @@
 				95D9CF481D1F291F004A0D70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		95D9CF491D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "MomentmapTests" */ = {
 			isa = XCConfigurationList;
@@ -809,6 +822,7 @@
 				95D9CF4B1D1F291F004A0D70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		95D9CF4C1D1F291F004A0D70 /* Build configuration list for PBXNativeTarget "MomentmapUITests" */ = {
 			isa = XCConfigurationList;
@@ -817,6 +831,7 @@
 				95D9CF4E1D1F291F004A0D70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

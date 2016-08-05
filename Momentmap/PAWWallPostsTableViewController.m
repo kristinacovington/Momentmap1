@@ -43,11 +43,14 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(distanceFilterDidChange:) name:PAWFilterDistanceDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:PAWCurrentLocationDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postWasCreated:) name:PAWPostCreatedNotification object:nil];
+        
+
+
     }
     return self;
 }
 
-#pragma mark -
+#pragma mark -f
 #pragma mark Dealloc
 
 - (void)dealloc {
@@ -63,11 +66,11 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     [super viewDidLoad];
     
     self.tableView.separatorColor = self.view.backgroundColor;
-    self.refreshControl.tintColor = [UIColor colorWithRed:102.0f green:0.0f blue:102.0f alpha:1.0f];
+    self.refreshControl.tintColor = [UIColor colorWithRed:141.0f green:0.0f blue:136.0f alpha:1.0f];
     
     // Set up a view for empty content
     self.noDataButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.noDataButton setTintColor:[UIColor colorWithRed:102.0f green:0.0f blue:102.0f alpha:1.0f]];
+    [self.noDataButton setTintColor:[UIColor colorWithRed:141.0f green:0.0f blue:136.0f alpha:1.0f]];
     [self.noDataButton setTitle:@"Send a moment!" forState:UIControlStateNormal];
     [self.noDataButton addTarget:self.parentViewController
                           action:@selector(postButtonSelected:)
@@ -123,14 +126,28 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     }
     
     // Query for posts near our current location.
-    
+
+
     // Get our current location:
     CLLocation *currentLocation = [self.dataSource currentLocationForWallPostsTableViewController:self];
-    CLLocationAccuracy filterDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:PAWUserDefaultsFilterDistanceKey];
+    CLLocationAccuracy filterDistance = 1000.0;
     
-    // And set the query to look by location
-    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:currentLocation.coordinate.latitude
-                                               longitude:currentLocation.coordinate.longitude];
+        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude];
+    
+    double maxDistance = 0;
+
+    
+    for (PFObject *object in self.objects) {
+        
+        if([point distanceInKilometersTo:object[@"location"]] > maxDistance)
+            maxDistance = [point distanceInKilometersTo:object[@"location"]];
+        
+    }
+    
+    
+    if(filterDistance < maxDistance)
+        filterDistance = maxDistance;
+
     [query whereKey:PAWParsePostLocationKey nearGeoPoint:point withinKilometers:PAWMetersToKilometers(filterDistance)];
     [query includeKey:PAWParsePostUserKey];
     
@@ -183,11 +200,21 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
 #pragma mark -
 #pragma mark UITableViewDelegate
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // call super because we're a custom subclass.
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
     PFObject *object = [self.objects objectAtIndex:indexPath.row];
+   /* PFGeoPoint *geoPoint = object[@"location"];
+    CLLocation *location;
+    
+    location = [location initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PAWFilterDistanceDidChangeNotification object:location];
+*/
+    
     PAWPost *post = [[PAWPost alloc] initWithPFObject:object];
     
     
@@ -206,7 +233,12 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     
     /* [postViewController setImage:post.photo setComment:post.title setUsername:post.subtitle setProfile:post.profile];
     */
-    [self presentViewController:postViewController animated:YES completion:nil];
+    if(![post.object[PAWParsePostUserKey] isEqual:[PFUser currentUser]]) {
+        [self presentViewController:postViewController animated:NO completion:nil];
+        [self.tableView reloadData];
+
+    }
+
     /*
     PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
     postViewController.imageView.image = [post.photo];
@@ -216,6 +248,9 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     [self presentViewController:postViewController animated:YES completion:nil];
 
     */
+    
+    
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -250,7 +285,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
             // We found the object, scroll to the cell position where this object is.
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:PAWWallPostsTableViewMainSection];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
             /*
             PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
             postViewController.delegate = self;
