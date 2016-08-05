@@ -67,6 +67,10 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.imageView.layer.cornerRadius = 25;
+    self.imageView.clipsToBounds = YES;
+    [self.imageView.layer setBorderColor: [[UIColor whiteColor] CGColor]];
+    [self.imageView.layer setBorderWidth: 2.0];
     
     self.tableData = [NSArray arrayWithObjects: @"Change profile photo", @"Save profile photo", @"Log out", @"Delete account", nil];
     self.name.text = [PFUser currentUser][@"username"];
@@ -188,8 +192,8 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
 
 
 - (IBAction)change:(id)sender {
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
+   // if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        /*
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                               message:@"Device has no camera"
                                                              delegate:nil
@@ -197,13 +201,13 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
                                                     otherButtonTitles: nil];
         
         [myAlertView show];
-        
+        */
         
         UIImagePickerController *pickerController = [[UIImagePickerController alloc]
                                                      init];
         pickerController.delegate = self;
         [self presentModalViewController:pickerController animated:NO];
-        
+ /*
         
     } else {
         
@@ -216,7 +220,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
         
     }
 
-   
+   */
 }
 
 #pragma mark -

@@ -60,6 +60,7 @@
     [super viewDidLoad];
 
     
+    self.textView.delegate = self;
     //EDITED: putting image in imageview
     self.imageView.image = self.image;
     
@@ -333,7 +334,17 @@
     return enabled;
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(nonnull NSString *)text
+{
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
 
+    }
+    
+    return YES;
+}
 
 
 - (void)didReceiveMemoryWarning

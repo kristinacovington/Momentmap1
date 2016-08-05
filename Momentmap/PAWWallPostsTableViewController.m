@@ -64,6 +64,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
     
     self.tableView.separatorColor = self.view.backgroundColor;
     self.refreshControl.tintColor = [UIColor colorWithRed:141.0f green:0.0f blue:136.0f alpha:1.0f];

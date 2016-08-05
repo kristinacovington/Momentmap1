@@ -11,8 +11,8 @@
 		959B77A31D53FAA50004145A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B77A01D53FAA50004145A /* FBSDKLoginKit.framework */; };
 		959B77A41D53FAA50004145A /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B77A11D53FAA50004145A /* ParseFacebookUtilsV4.framework */; };
 		959B77A61D542CD90004145A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959B77A51D542CD90004145A /* Launch Screen.storyboard */; };
+		959B77A71D5509530004145A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF251D1F291E004A0D70 /* Main.storyboard */; };
 		95D9CF1E1D1F291E004A0D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF1D1D1F291E004A0D70 /* main.m */; };
-		95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF251D1F291E004A0D70 /* Main.storyboard */; };
 		95D9CF291D1F291E004A0D70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF281D1F291E004A0D70 /* Images.xcassets */; };
 		95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF2A1D1F291E004A0D70 /* LaunchScreen.storyboard */; };
 		95D9CF371D1F291F004A0D70 /* MomentmapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF361D1F291F004A0D70 /* MomentmapTests.m */; };
@@ -32,7 +32,6 @@
 		95D9CF811D1F338B004A0D70 /* PAWSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7C1D1F338B004A0D70 /* PAWSettingsViewController.xib */; };
 		95D9CF831D1F338B004A0D70 /* PAWWallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF7E1D1F338B004A0D70 /* PAWWallViewController.xib */; };
 		95D9CF851D1F33BB004A0D70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */; };
-		95D9CF871D1F35A4004A0D70 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF861D1F35A4004A0D70 /* info.plist */; };
 		95D9CFA31D1F3764004A0D70 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFA21D1F3764004A0D70 /* libz.1.1.3.tbd */; };
 		95D9CFB91D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CFB81D1F3AB7004A0D70 /* PAWWallPostCreateViewController.m */; };
 		95D9CFBB1D1F3BC8004A0D70 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D9CFBA1D1F3BC8004A0D70 /* ParseUI.framework */; };
@@ -85,6 +84,7 @@
 		959B77A01D53FAA50004145A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Momentmap/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		959B77A11D53FAA50004145A /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = Momentmap/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		959B77A51D542CD90004145A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		959B77AA1D550EBF0004145A /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		95D9CF191D1F291E004A0D70 /* Momentmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momentmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D9CF1D1D1F291E004A0D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95D9CF261D1F291E004A0D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,7 +122,6 @@
 		95D9CF7C1D1F338B004A0D70 /* PAWSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWSettingsViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWSettingsViewController.xib"; sourceTree = "<group>"; };
 		95D9CF7E1D1F338B004A0D70 /* PAWWallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PAWWallViewController.xib; path = "../../../Downloads/AnyWall-master/AnyWall-iOS/AnyWall/PAWWallViewController.xib"; sourceTree = "<group>"; };
 		95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		95D9CF861D1F35A4004A0D70 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		95D9CF881D1F361A004A0D70 /* Anywall-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Anywall-Prefix.pch"; sourceTree = "<group>"; };
 		95D9CFA21D1F3764004A0D70 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		95D9CFB71D1F3A82004A0D70 /* PAWWallPostCreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PAWWallPostCreateViewController.h; sourceTree = "<group>"; };
@@ -264,9 +263,9 @@
 				95D9CF7B1D1F338B004A0D70 /* PAWNewUserViewController.xib */,
 				95D9CF7C1D1F338B004A0D70 /* PAWSettingsViewController.xib */,
 				95D9CF7E1D1F338B004A0D70 /* PAWWallViewController.xib */,
-				95D9CF861D1F35A4004A0D70 /* info.plist */,
 				959B77A51D542CD90004145A /* Launch Screen.storyboard */,
 				95D9CF841D1F33BB004A0D70 /* InfoPlist.strings */,
+				959B77AA1D550EBF0004145A /* info.plist */,
 				95D9CF1D1D1F291E004A0D70 /* main.m */,
 				95D9CF881D1F361A004A0D70 /* Anywall-Prefix.pch */,
 				95D9CFDE1D263EEA004A0D70 /* FriendsViewController.xib */,
@@ -520,14 +519,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				959B77A71D5509530004145A /* Main.storyboard in Resources */,
 				95D9CFE11D2AF4BF004A0D70 /* PAWPostView.xib in Resources */,
 				95D9CF801D1F338B004A0D70 /* PAWNewUserViewController.xib in Resources */,
 				95D9CF831D1F338B004A0D70 /* PAWWallViewController.xib in Resources */,
 				95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */,
 				959B77A61D542CD90004145A /* Launch Screen.storyboard in Resources */,
 				95D9CF291D1F291E004A0D70 /* Images.xcassets in Resources */,
-				95D9CF871D1F35A4004A0D70 /* info.plist in Resources */,
-				95D9CF271D1F291E004A0D70 /* Main.storyboard in Resources */,
 				95D9CF811D1F338B004A0D70 /* PAWSettingsViewController.xib in Resources */,
 				95D9CF851D1F33BB004A0D70 /* InfoPlist.strings in Resources */,
 				95D9CFE41D2B0049004A0D70 /* PAWWallPostCreateViewController.xib in Resources */,
@@ -724,7 +722,7 @@
 					"$(PROJECT_DIR)/Momentmap",
 				);
 				INFOPLIST_FILE = Momentmap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.Momentmap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -741,7 +739,7 @@
 					"$(PROJECT_DIR)/Momentmap",
 				);
 				INFOPLIST_FILE = Momentmap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KristinaCovington.Momentmap;
 				PRODUCT_NAME = "$(TARGET_NAME)";

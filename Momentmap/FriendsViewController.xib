@@ -88,7 +88,7 @@
                 <constraint firstItem="uAV-Kl-8G7" firstAttribute="trailing" secondItem="2Cj-gC-JjY" secondAttribute="trailing" id="gFA-d1-405"/>
                 <constraint firstItem="2Cj-gC-JjY" firstAttribute="leading" secondItem="i5m-24-sfL" secondAttribute="leading" id="suj-m0-TKb"/>
             </constraints>
-            <point key="canvasLocation" x="41" y="506"/>
+            <point key="canvasLocation" x="201" y="513"/>
         </view>
         <searchDisplayController id="a6c-ym-JAs">
             <connections>

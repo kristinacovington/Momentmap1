@@ -19,7 +19,7 @@
 
 @end
 
-@interface PAWWallPostCreateViewController : UIViewController
+@interface PAWWallPostCreateViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, weak) id<PAWWallPostCreateViewControllerDataSource> dataSource;
 
