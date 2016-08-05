@@ -555,7 +555,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
     [alertView show];
 
 }
-
+/*
 
 - (IBAction)deleteAccount:(id)sender {
     
@@ -566,6 +566,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
                                               otherButtonTitles:@"Cancel", nil];
     [deleteAlertView show];
 }
+ */
 
 - (IBAction)friends:(id)sender {
     

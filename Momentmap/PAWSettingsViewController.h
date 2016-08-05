@@ -42,7 +42,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 
-- (IBAction)deleteAccount:(id)sender;
+//- (IBAction)deleteAccount:(id)sender;
 
 - (IBAction)friends:(id)sender;
 
