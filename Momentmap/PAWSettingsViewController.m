@@ -123,10 +123,10 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
                 self.imageView.image = fetchedImage;
             }
         }];
-        NSLog(@"BLANK SPACE");
     }
-    else
-        NSLog(@"FILLED");
+    else{
+        
+    }
 }
 
 

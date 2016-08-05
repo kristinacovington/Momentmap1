@@ -190,7 +190,7 @@
     
     PFACL *readOnlyACL = [PFACL ACL];
     [readOnlyACL setPublicReadAccess:YES];
-    [readOnlyACL setPublicWriteAccess:YES];
+    [readOnlyACL setPublicWriteAccess:NO];
     user.ACL = readOnlyACL;
     
     user.password = password;

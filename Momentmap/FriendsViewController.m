@@ -33,6 +33,8 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 
 @property(strong, nonatomic) NSMutableArray *friendsArray;
 @property(strong, nonatomic) NSMutableArray *receivedRequestsArray;
+@property(strong, nonatomic) NSMutableArray *tableArray;
+
 @property(strong, nonatomic) NSMutableArray *sentRequestsArray;
 @property(strong, nonatomic) NSMutableArray *searchResults;
 
@@ -60,6 +62,9 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     self.friendsArray = [[NSMutableArray alloc] init];
     self.receivedRequestsArray = [[NSMutableArray alloc] init];
     self.sentRequestsArray = [[NSMutableArray alloc] init];
+    
+    self.tableArray = [[NSMutableArray alloc] init];
+
 
     self.searchResults = [[NSMutableArray alloc] init];
 
@@ -79,16 +84,31 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 */
 -(void)queryIt{
    // [_friendsArray addObject:[PFUser currentUser]];
-    PFRelation *relation = [[PFUser currentUser] objectForKey:friendsKey];
+  /*  PFRelation *relation = [[PFUser currentUser] objectForKey:friendsKey];
     PFQuery *query = [relation query];
     [query setLimit:1000];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          [self.friendsArray addObjectsFromArray:objects];
     }];
-    
+  */
     //query.cachePolicy = kPFCachePolicyCacheElseNetwork;
 
+    
+    //Finding who sent requests to me
+    
+    PFQuery *queryUserSent = [PFUser query];
+    [queryUserSent whereKey:receivedKey equalTo: [PFUser currentUser]];
+    
+    [queryUserSent setLimit:1000];
+    [queryUserSent findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         [self.sentRequestsArray addObjectsFromArray:objects];
+     }];
+
+    
+    
+    //Finding who I sent requests to
     
     PFRelation *relationReceived = [[PFUser currentUser] objectForKey:receivedKey];
     PFQuery *queryReceived = [relationReceived query];
@@ -99,7 +119,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
      }];
     
     //queryReceived.cachePolicy = kPFCachePolicyCacheElseNetwork;
-
+/*
     
     PFRelation *relationSent = [[PFUser currentUser] objectForKey:sentKey];
     PFQuery *querySent = [relationSent query];
@@ -108,7 +128,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
      {
          [self.sentRequestsArray addObjectsFromArray:objects];
      }];
-    
+  */
     //querySent.cachePolicy = kPFCachePolicyCacheElseNetwork;
 
     for(PFUser *user in _receivedRequestsArray){
@@ -195,8 +215,9 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
         return [self.searchResults count];
     }
     else {
-
-        return [_friendsArray count];
+//add received too
+        
+        return [_tableArray count];
     
     }
 }
@@ -216,10 +237,52 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     if(tableView == self.searchDisplayController.searchResultsTableView){
         
         cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row][@"username"];
+        
+        if([[self.searchResults objectAtIndex:indexPath.row][receivedKey] containsObject: [PFUser currentUser]] &&  [[PFUser currentUser][receivedKey] containsObject: [self.searchResults objectAtIndex:indexPath.row]]){
+            
+            cell.detailTextLabel.text = @"friends";
+            
+        } else if ([[self.searchResults objectAtIndex:indexPath.row][receivedKey] containsObject: [PFUser currentUser]] ){
+            
+            cell.detailTextLabel.text = @"received request";
+        } else if ([[PFUser currentUser][receivedKey] containsObject: [self.searchResults objectAtIndex:indexPath.row]]) {
+            
+            cell.detailTextLabel.text = @"sent request";
+
+        } else {
+            
+            cell.detailTextLabel.text = @"";
+
+        }
     }
     else {
-        PFUser *user = [_friendsArray objectAtIndex:indexPath.row][@"username"];
+        int count = 0;
+
+        if([_friendsArray count] >= indexPath.row){
+            for(PFUser *user in _receivedRequestsArray) {
+                
+                if(![_friendsArray containsObject:user]) {
+                    cell.textLabel.text = user.username;
+                    cell.detailTextLabel.text = @"received";
+                    count++;
+                    
+                    [_tableArray addObject:user];
+                }
+                
+            }
+   
+        } else{
+        
+        PFUser *user = [_friendsArray objectAtIndex:indexPath.row - count][@"username"];
         cell.textLabel.text = user.username;
+        cell.detailTextLabel.text = @"friends";
+        
+        [_tableArray addObject: _friendsArray];
+        }
+        
+        
+        
+        
     }
  
        return cell;
@@ -249,7 +312,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     if(aTableView == self.searchDisplayController.searchResultsTableView){
         PFUser *user = [_searchResults objectAtIndex:indexPath.row];
         
-        
+      /*
         if([_friendsArray containsObject:user]) {
             
         }
@@ -281,20 +344,64 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
         }
     }
     else {
-        PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
-        
-        PFRelation *relation = [self.postObject relationForKey:@"Viewers"];
-        [relation addObject: user];
-        
-        
+       
+       */
+        //PFUser *user = [_tableArray objectAtIndex:indexPath.row];
 
+        if([cell.detailTextLabel.text isEqualToString:@"received request"]){
+            
+            [[PFUser currentUser][receivedKey] addObject:user];
+        
+            PFRelation *relation = [self.postObject relationForKey:@"Viewers"];
+            [relation addObject: user];
+
+            
+        }
+        
+        if([cell.detailTextLabel.text isEqualToString:@"friends"]){
+            
+            
+            PFRelation *relation = [self.postObject relationForKey:@"Viewers"];
+            [relation addObject: user];
+        }
+        
     }
-   
+    
+    else {
+        
+        PFUser *user = [_tableArray objectAtIndex:indexPath.row];
+
+        if([cell.detailTextLabel.text isEqualToString:@"received request"]){
+            
+            [[PFUser currentUser][receivedKey] addObject:user];
+            
+            PFRelation *relation = [self.postObject relationForKey:@"Viewers"];
+            [relation addObject: user];
+            
+            
+        }
+        
+        if([cell.detailTextLabel.text isEqualToString:@"friends"]){
+            
+            
+            PFRelation *relation = [self.postObject relationForKey:@"Viewers"];
+            [relation addObject: user];
+        }
+        
+        
+                       
+    }
+        
+    
+
+    //}
+ /*
     if(_friendsArray != Nil){
         //This is the user(s) to set the post to
         //TODO send post ref to this viewcontroller
         //PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
     }
+  */
 }
 
 -(void)filterResults:(NSString *)searchTerm  {
