@@ -63,6 +63,7 @@
     self.textView.delegate = self;
     //EDITED: putting image in imageview
     self.imageView.image = self.image;
+   // self.imageView.image = [UIImage imageWithCGImage: self.image.CGImage scale: self.image.scale orientation:UIImageOrientationLeftMirrored];
     
     [self shouldUploadImage:self.image];
 
@@ -231,7 +232,22 @@
 }
 
 
+- (IBAction)savePhoto:(id)sender {
+    
+    if(self.imageView.image)
+    UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Saved!" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [alert show];
+    
+    [self performSelector:@selector(dismissAlertView:) withObject:alert afterDelay:1];
 
+    return;
+}
+
+-(void)dismissAlertView:(UIAlertView *) alert {
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
 //EDITED buttons
 /*
 - (IBAction)takePhotoPost:(id)sender {
@@ -332,7 +348,7 @@
     }
     
     self.postButton.enabled = enabled;
-    
+    self.postButton.tintColor = [UIColor blackColor];
     return enabled;
 }
 

@@ -9,7 +9,7 @@
 
 #import <Parse/Parse.h>
 
-
+#import "PAWConstants.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -140,7 +140,15 @@ PAWNewUserViewControllerDelegate>
                     completion();
                 } else {
                     // Save the name on Parse
+     
+                    
+                    //facebookID = your facebook user id or facebook username both of work well
+                    NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", result[@"id"]]];
+                    NSData *imageData = [NSData dataWithContentsOfURL:pictureURL];
+                    
                     [PFUser currentUser][@"name"] = result[@"name"];
+                    [PFUser currentUser][kPAPProfilePictureKey] =[PFFile fileWithData: imageData];
+
                     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         completion();
                     }];

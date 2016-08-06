@@ -37,5 +37,7 @@
 - (IBAction)postPost:(id)sender;
 //- (IBAction)takePhotoPost:(id)sender;
 
+- (IBAction)savePhoto:(id)sender;
+
 
 @end

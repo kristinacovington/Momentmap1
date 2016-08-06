@@ -73,7 +73,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
     [self.imageView.layer setBorderWidth: 2.0];
     
     self.tableData = [NSArray arrayWithObjects: @"Change profile photo", @"Save profile photo", @"Log out", @"Delete account", nil];
-    self.name.text = [PFUser currentUser][@"username"];
+    self.name.text = [PFUser currentUser][@"name"];
     
     [self setProfile];
     

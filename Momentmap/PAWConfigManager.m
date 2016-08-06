@@ -95,7 +95,7 @@
     NSNumber *number = self.config[@"postMaxCharacterCount"];
     if (number == nil) {
         // No config value, fall back to the defaults
-        return 140;
+        return 60;
     }
     return [number unsignedIntegerValue];
 }
