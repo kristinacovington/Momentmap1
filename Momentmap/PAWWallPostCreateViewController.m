@@ -59,6 +59,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.imageView.clipsToBounds = YES;
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle: @"Post"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(postPost:)];
     
     self.textView.delegate = self;
     //EDITED: putting image in imageview
