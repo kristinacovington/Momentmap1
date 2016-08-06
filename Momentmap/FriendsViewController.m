@@ -68,8 +68,11 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 
     self.searchResults = [[NSMutableArray alloc] init];
 
+    NSLog(@"QUERY IT");
 
     [self queryIt];
+    NSLog(@"QUERYED IT");
+
     
     self.sendButton.enabled = NO;
     
@@ -83,6 +86,9 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 }
 */
 -(void)queryIt{
+    
+    NSLog(@"QUERYING IT");
+
    // [_friendsArray addObject:[PFUser currentUser]];
   /*  PFRelation *relation = [[PFUser currentUser] objectForKey:friendsKey];
     PFQuery *query = [relation query];
@@ -144,45 +150,78 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     
     PFObject *friendships = [PFUser currentUser][@"Friendships"];
     //[friendships fetchIfNeeded];
+    
     PFRelation *received = [friendships relationForKey:@"received"];
     PFRelation *sent = [friendships relationForKey:@"sent"];
     PFRelation *friends = [friendships relationForKey:@"friends"];
     
-    
-    
-    PFQuery *queryReceived = [received query];
-    
-    [queryReceived setLimit:1000];
-    [queryReceived findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         [self.receivedRequestsArray addObjectsFromArray:objects];
+    NSLog(@"RECEIVE IT");
 
+    PFQuery *queryReceived = [received query];
+    [queryReceived setLimit:1000];
+    NSArray *receivedObjects = [queryReceived findObjects];
+
+    
+         NSLog(@"RECEIVING IT");
+
+         for(PFUser *object in receivedObjects){
+             NSLog(@"RECEIVING OBJECT IT");
+             NSLog(object[@"username"]);
+             [self.receivedRequestsArray addObject:object];
+             
+         }
          
-     }];
+    
+    
+    NSLog(@"SENT IT");
+
     
     PFQuery *querySent = [sent query];
     [querySent setLimit:1000];
-    [querySent findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         [self.sentRequestsArray addObjectsFromArray:objects];
+    NSArray *sentObjects = [querySent findObjects];
+
+         NSLog(@"SENTING IT");
+
+         
+         for(PFUser *object in sentObjects){
+             NSLog(@"SENTING OBJECT IT");
+             NSLog(object[@"username"]);
+             [self.sentRequestsArray addObject:object];
+             
+         }
          
          
-     }];
     
+    NSLog(@"FRIENDS IT");
+
     PFQuery *queryFriends = [friends query];
     [queryFriends setLimit:1000];
-    [queryFriends findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         [self.friendsArray addObjectsFromArray:objects];
+    NSArray *friendsObjects = [queryFriends findObjects];
+   
          
+         NSLog(@"FRIENDSING IT");
+
+         for(PFUser *object in friendsObjects){
+             NSLog(@"FRIENDSING OBJECT IT");
+             NSLog(object[@"username"]);
+             [self.friendsArray addObject:object];
+             
+         }
          
-     }];
+   
     
+ 
+
     for(PFUser *user in self.receivedRequestsArray){
+        NSLog(@"RECEIVED ARRAY IT");
+        NSLog(user[@"username"]);
         [self.tableArray addObject: user];
     }
     
     for(PFUser *user in self.friendsArray){
+        NSLog(@"TABLE ARRAY IT");
+        NSLog(user[@"username"]);
+
         [self.tableArray addObject: user];
     }
     
@@ -310,6 +349,11 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     else {
 
         PFUser *userAtIndex = [self.tableArray objectAtIndex:indexPath.row];
+        NSLog(@"SHOWING TABLE ARRAY");
+        for(PFUser *test in self.tableArray ){
+            NSLog(test[@"username"]);
+        }
+        
         cell.textLabel.text = userAtIndex[@"username"];
         
         if([_friendsArray containsObject: userAtIndex] ){
@@ -372,12 +416,14 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
         
      
         
-        
+    
         if([cell.detailTextLabel.text isEqualToString:@"received request"]){
             
            
 
             [currentUserReceived removeObject:user];
+
+            
             [currentUserFriends addObject:user];
             
             [userSent removeObject: [PFUser currentUser]];

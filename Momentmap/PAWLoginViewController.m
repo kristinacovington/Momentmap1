@@ -148,9 +148,10 @@ PAWNewUserViewControllerDelegate>
                     
                     [PFUser currentUser][@"name"] = result[@"name"];
                     
-                    if(imageData)
+                    if(imageData && ![PFUser currentUser][kPAPProfilePictureKey])
                     [PFUser currentUser][kPAPProfilePictureKey] =[PFFile fileWithData: imageData];
                    
+                    
                     
                     PFObject *friendshipsObject = [PFObject objectWithClassName:@"Friendships"];
                     
@@ -162,7 +163,8 @@ PAWNewUserViewControllerDelegate>
                     [readOnlyACL setPublicWriteAccess:YES];
                     friendshipsObject.ACL = readOnlyACL;
                   
-
+                    
+                    if(![PFUser currentUser][@"Friendships"])
                     [PFUser currentUser][@"Friendships"] = friendshipsObject;
                     
 
