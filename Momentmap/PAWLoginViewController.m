@@ -147,7 +147,24 @@ PAWNewUserViewControllerDelegate>
                     NSData *imageData = [NSData dataWithContentsOfURL:pictureURL];
                     
                     [PFUser currentUser][@"name"] = result[@"name"];
+                    
+                    if(imageData)
                     [PFUser currentUser][kPAPProfilePictureKey] =[PFFile fileWithData: imageData];
+                   
+                    
+                    PFObject *friendshipsObject = [PFObject objectWithClassName:@"Friendships"];
+                    
+                    friendshipsObject[@"user"] = [PFUser currentUser];
+                    
+                    // Use PFACL to restrict future modifications to this object.
+                    PFACL *readOnlyACL = [PFACL ACL];
+                    [readOnlyACL setPublicReadAccess:YES];
+                    [readOnlyACL setPublicWriteAccess:YES];
+                    friendshipsObject.ACL = readOnlyACL;
+                  
+
+                    [PFUser currentUser][@"Friendships"] = friendshipsObject;
+                    
 
                     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         completion();
