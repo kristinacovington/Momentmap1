@@ -575,7 +575,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
    // viewController.delegate = self;
     
     
-    [self presentViewController:viewController animated:NO completion:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
     
     //[self dismissViewControllerAnimated:NO completion:nil];
 

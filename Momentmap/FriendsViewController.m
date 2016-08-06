@@ -75,6 +75,8 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 
     
     self.sendButton.enabled = NO;
+    self.sendButton.hidden = YES;
+    //[self.sendButton setTitle:<#(nullable NSString *)#> forState:UIControlStateDisabled];
     
 
 }
@@ -279,10 +281,22 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
         }
     }];
     
-    UIViewController *vc = [self parentViewController];
+    //UIViewController *vc = [self parentViewController];
+    //[vc dismissModalViewControllerAnimated:YES];
+    UIAlertView * sentAlert = [[UIAlertView alloc] initWithTitle:@"Sent!"
+                                                         message:nil
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles:nil];
+    [sentAlert show];
+    
+    [self performSelector:@selector(dismissSentAlertView:) withObject:sentAlert afterDelay:1];
+    
 
+    
     [self dismissViewControllerAnimated:NO completion:nil];
-    [vc dismissModalViewControllerAnimated:NO];
+    
+
 
     
 
@@ -380,6 +394,14 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 
 #pragma mark -
 #pragma mark UITableViewDelegate
+-(void)dismissAlertView:(UIAlertView *)alertView{
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+-(void)dismissSentAlertView:(UIAlertView *)alertView{
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 
 
@@ -435,6 +457,16 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
             
             [_friendsArray addObject:user];
             
+            UIAlertView * friendAcceptedAlert = [[UIAlertView alloc] initWithTitle:@"Friend Request Accepted"
+                                                             message:user[@"username"]
+                                                            delegate:self
+                                                   cancelButtonTitle:nil
+                                                   otherButtonTitles:nil];
+            [friendAcceptedAlert show];
+
+            [self performSelector:@selector(dismissAlertView:) withObject:friendAcceptedAlert afterDelay:1];
+
+            
         } else if ([cell.detailTextLabel.text isEqualToString:@"friends"]){
             
             if(self.postObject){
@@ -454,7 +486,14 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
             
             [userReceived addObject: [PFUser currentUser]];
             
+            UIAlertView * sentRequestAlert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
+                                                                           message:user[@"username"]
+                                                                          delegate:self
+                                                                 cancelButtonTitle:nil
+                                                                 otherButtonTitles:nil];
+            [sentRequestAlert show];
             
+            [self performSelector:@selector(dismissAlertView:) withObject:sentRequestAlert afterDelay:1];
             
             
         }
@@ -521,13 +560,41 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
             
             [_friendsArray addObject:user];
             
+            UIAlertView * friendAcceptedAlert = [[UIAlertView alloc] initWithTitle:@"Friend Request Accepted"
+                                                                           message:user[@"username"]
+                                                                          delegate:self
+                                                                 cancelButtonTitle:nil
+                                                                 otherButtonTitles:nil];
+            [friendAcceptedAlert show];
+            
+            [self performSelector:@selector(dismissAlertView:) withObject:friendAcceptedAlert afterDelay:1];
+            
         } else if ([cell.detailTextLabel.text isEqualToString:@"friends"]){
             
-            if(self.postObject){
+            
+            
+            if(cell.accessoryType == UITableViewCellAccessoryCheckmark && self.postObject){
+                cell.accessoryType = UITableViewCellAccessoryNone;
+
                 PFRelation *viewers = [self.postObject relationForKey:@"Viewers"];
                 
                 [viewers addObject: user];
+            
             }
+            else if (cell.accessoryType == UITableViewCellAccessoryNone && self.postObject) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                
+                PFRelation *viewers = [self.postObject relationForKey:@"Viewers"];
+      
+                [viewers removeObject: user];
+                
+                self.sendButton.enabled = YES;
+                self.sendButton.hidden = NO;
+                
+                
+            }
+
+
             
         }
         

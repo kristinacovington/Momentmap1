@@ -234,7 +234,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     
     /* [postViewController setImage:post.photo setComment:post.title setUsername:post.subtitle setProfile:post.profile];
     */
-    if(![post.object[PAWParsePostUserKey] isEqual:[PFUser currentUser]]) {
+    if(![post.object[@"username"] isEqual: [PFUser currentUser][@"username"]]) {
         [self presentViewController:postViewController animated:NO completion:nil];
         [self.tableView reloadData];
 

@@ -51,10 +51,7 @@
 #pragma mark UIViewController
 
 -(void) viewDidAppear:(BOOL)animated {
-    if(self.shouldClose) {
-        [self dismissViewControllerAnimated:NO completion:nil];
-        self.shouldClose = false;
-    }
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -194,9 +191,10 @@
     
     viewController.postObject = postObject;
 
-    [self presentViewController:viewController animated:NO completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
-    self.shouldClose = true;
+    [self.navigationController pushViewController:viewController animated:YES ];
+
 
 
     

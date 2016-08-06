@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="searchBar" destination="2Cj-gC-JjY" id="kb2-kA-bb0"/>
                 <outlet property="searchDisplayController" destination="a6c-ym-JAs" id="nMc-ab-Ujl"/>
-                <outlet property="sendButton" destination="DcH-8Z-MJY" id="0Qs-1v-DEv"/>
                 <outlet property="tableView" destination="uAV-Kl-8G7" id="hUX-w1-RSY"/>
                 <outlet property="view" destination="iN0-l3-epB" id="AgY-ur-aPD"/>
             </connections>
@@ -19,54 +18,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5m-24-sfL">
-                    <rect key="frame" x="0.0" y="19" width="320" height="44"/>
-                    <textAttributes key="titleTextAttributes">
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </textAttributes>
-                    <items>
-                        <navigationItem title="Friends" id="77O-GS-aEc">
-                            <barButtonItem key="leftBarButtonItem" style="plain" id="16N-e1-B23">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="py3-6P-nXs" userLabel="Done">
-                                    <rect key="frame" x="16" y="7" width="71" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                    <state key="normal" title="Done">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="done:" destination="-1" eventType="touchUpInside" id="91K-5t-V61"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" style="plain" id="EcN-4P-R7r">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DcH-8Z-MJY">
-                                    <rect key="frame" x="268" y="7" width="36" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="Send">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="send:" destination="-1" eventType="touchUpInside" id="q9X-gE-B5b"/>
-                                    </connections>
-                                </button>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2Cj-gC-JjY">
-                    <rect key="frame" x="0.0" y="63" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="70" width="320" height="44"/>
                     <color key="barTintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="UyZ-o1-jlJ"/>
                     </connections>
                 </searchBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uAV-Kl-8G7">
-                    <rect key="frame" x="0.0" y="107" width="320" height="461"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uAV-Kl-8G7">
+                    <rect key="frame" x="0.0" y="114" width="320" height="434"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -74,21 +35,36 @@
                         <outlet property="delegate" destination="-1" id="dTj-I1-6yk"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUZ-N5-JfO">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                    <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="Hxe-HU-q5F"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Send">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="send:" destination="-1" eventType="touchUpInside" id="gLl-T7-JSF"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="uAV-Kl-8G7" firstAttribute="top" secondItem="2Cj-gC-JjY" secondAttribute="bottom" id="BvG-Yl-qqh"/>
-                <constraint firstAttribute="bottom" secondItem="uAV-Kl-8G7" secondAttribute="bottom" id="J2A-fO-i6L"/>
-                <constraint firstAttribute="trailing" secondItem="i5m-24-sfL" secondAttribute="trailing" id="JK8-no-ODy"/>
-                <constraint firstItem="i5m-24-sfL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PuG-Nv-hAi"/>
-                <constraint firstItem="uAV-Kl-8G7" firstAttribute="leading" secondItem="2Cj-gC-JjY" secondAttribute="leading" id="R0T-CM-Jb7"/>
-                <constraint firstItem="2Cj-gC-JjY" firstAttribute="trailing" secondItem="i5m-24-sfL" secondAttribute="trailing" id="XzK-6a-4fu"/>
-                <constraint firstItem="2Cj-gC-JjY" firstAttribute="top" secondItem="i5m-24-sfL" secondAttribute="bottom" id="c7T-BQ-veG"/>
-                <constraint firstItem="i5m-24-sfL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="19" id="fCL-bZ-t6x"/>
-                <constraint firstItem="uAV-Kl-8G7" firstAttribute="trailing" secondItem="2Cj-gC-JjY" secondAttribute="trailing" id="gFA-d1-405"/>
-                <constraint firstItem="2Cj-gC-JjY" firstAttribute="leading" secondItem="i5m-24-sfL" secondAttribute="leading" id="suj-m0-TKb"/>
+                <constraint firstItem="uAV-Kl-8G7" firstAttribute="top" secondItem="2Cj-gC-JjY" secondAttribute="bottom" id="42y-PZ-1UR"/>
+                <constraint firstItem="uAV-Kl-8G7" firstAttribute="leading" secondItem="2Cj-gC-JjY" secondAttribute="leading" id="Cs4-r4-mie"/>
+                <constraint firstItem="uAV-Kl-8G7" firstAttribute="trailing" secondItem="2Cj-gC-JjY" secondAttribute="trailing" id="EIt-U6-RTn"/>
+                <constraint firstItem="TUZ-N5-JfO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jm2-en-epq"/>
+                <constraint firstItem="TUZ-N5-JfO" firstAttribute="trailing" secondItem="2Cj-gC-JjY" secondAttribute="trailing" id="dxH-Dz-vRV"/>
+                <constraint firstItem="TUZ-N5-JfO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="epI-9s-3uJ"/>
+                <constraint firstAttribute="bottom" secondItem="uAV-Kl-8G7" secondAttribute="bottom" id="sRE-5r-uLU"/>
+                <constraint firstItem="TUZ-N5-JfO" firstAttribute="leading" secondItem="2Cj-gC-JjY" secondAttribute="leading" id="teC-cF-gZf"/>
+                <constraint firstItem="TUZ-N5-JfO" firstAttribute="bottom" secondItem="2Cj-gC-JjY" secondAttribute="top" id="vyS-1Q-HCN"/>
+                <constraint firstAttribute="trailing" secondItem="TUZ-N5-JfO" secondAttribute="trailing" id="wj2-t3-dvS"/>
             </constraints>
-            <point key="canvasLocation" x="201" y="513"/>
+            <point key="canvasLocation" x="286" y="497"/>
         </view>
         <searchDisplayController id="a6c-ym-JAs">
             <connections>
