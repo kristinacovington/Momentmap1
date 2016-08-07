@@ -85,7 +85,7 @@ PAWWallPostCreateViewControllerDataSource>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _filterMaxDistance = 1000.0;
+    self.filterMaxDistance = 100000000.0;
     // Do any additional setup after loading the view from its nib.
     
     [self loadWallPostsTableViewController];

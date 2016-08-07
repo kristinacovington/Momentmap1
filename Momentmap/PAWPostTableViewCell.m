@@ -92,7 +92,7 @@ static CGFloat const PAWPostTableViewCellDetailTextLabelTopInset = 3.0f;
 + (UIColor *)textLabelColorForPostTableViewCellStyle:(PAWPostTableViewCellStyle)style {
     switch (style) {
         case PAWPostTableViewCellStyleLeft:
-            return [UIColor blackColor];
+            return [UIColor whiteColor];
             break;
         case PAWPostTableViewCellStyleRight:
             return [UIColor whiteColor];
@@ -105,10 +105,10 @@ static CGFloat const PAWPostTableViewCellDetailTextLabelTopInset = 3.0f;
 + (UIColor *)detailTextLabelColorForPostTableViewCellStyle:(PAWPostTableViewCellStyle)style {
     switch (style) {
         case PAWPostTableViewCellStyleLeft:
-            return [UIColor colorWithRed:141.0f green:0.0f blue:136.0f alpha:1.0f];
+            return [UIColor lightGrayColor];
             break;
         case PAWPostTableViewCellStyleRight:
-            return [UIColor colorWithRed:141.0f green:0.0f blue:136.0f alpha:1.0f];
+            return [UIColor lightGrayColor];
             break;
     }
     

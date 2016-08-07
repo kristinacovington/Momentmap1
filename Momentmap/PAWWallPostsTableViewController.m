@@ -150,6 +150,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
         filterDistance = maxDistance;
 
     [query whereKey:PAWParsePostLocationKey nearGeoPoint:point withinKilometers:PAWMetersToKilometers(filterDistance)];
+    [query whereKey:@"Viewers" equalTo:[PFUser currentUser].objectId];
     [query includeKey:PAWParsePostUserKey];
     
     return query;
@@ -206,6 +207,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     // call super because we're a custom subclass.
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
+    
     PFObject *object = [self.objects objectAtIndex:indexPath.row];
    /* PFGeoPoint *geoPoint = object[@"location"];
     CLLocation *location;
@@ -216,8 +218,10 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     [[NSNotificationCenter defaultCenter] postNotificationName:PAWFilterDistanceDidChangeNotification object:location];
 */
     
+    
     PAWPost *post = [[PAWPost alloc] initWithPFObject:object];
     
+    if(![[object[@"user"] valueForKey:@"objectId"] isEqualToString: [PFUser currentUser].objectId]) {
     
     PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
     postViewController.delegate = self;
@@ -234,7 +238,7 @@ static NSUInteger const PAWWallPostsTableViewMainSection = 0;
     
     /* [postViewController setImage:post.photo setComment:post.title setUsername:post.subtitle setProfile:post.profile];
     */
-    if(![post.object[@"username"] isEqual: [PFUser currentUser][@"username"]]) {
+
         [self presentViewController:postViewController animated:NO completion:nil];
         [self.tableView reloadData];
 

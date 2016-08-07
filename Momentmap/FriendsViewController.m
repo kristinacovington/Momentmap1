@@ -38,6 +38,9 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 @property(strong, nonatomic) NSMutableArray *sentRequestsArray;
 @property(strong, nonatomic) NSMutableArray *searchResults;
 
+@property(strong, nonatomic) NSMutableArray *sending;
+
+
 
 @end
 
@@ -67,6 +70,9 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 
 
     self.searchResults = [[NSMutableArray alloc] init];
+    
+    self.sending = [[NSMutableArray alloc] init];
+
 
     NSLog(@"QUERY IT");
 
@@ -256,7 +262,13 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     
     
    // [self.postObject saveInBackground];
+    PFRelation *viewerRelation = [self.postObject relationForKey:@"Viewers"];
+
+    [viewerRelation addObject: [PFUser currentUser]];
     
+    for(PFUser *user in self.sending)
+        [viewerRelation addObject: user];
+
 
     [self.postObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
@@ -577,17 +589,20 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
                 cell.accessoryType = UITableViewCellAccessoryNone;
 
                 PFRelation *viewers = [self.postObject relationForKey:@"Viewers"];
-                
-                [viewers addObject: user];
+                [viewers removeObject: user];
+
+                [self.sending removeObject:user];
+
             
             }
             else if (cell.accessoryType == UITableViewCellAccessoryNone && self.postObject) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 
                 PFRelation *viewers = [self.postObject relationForKey:@"Viewers"];
-      
-                [viewers removeObject: user];
+                [viewers addObject: user];
+
                 
+                [self.sending addObject:user];
                 self.sendButton.enabled = YES;
                 self.sendButton.hidden = NO;
                 
