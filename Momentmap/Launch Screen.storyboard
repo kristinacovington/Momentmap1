@@ -25,33 +25,26 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Momentmap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GN-E5-rDm">
-                                <rect key="frame" x="173" y="275" width="254" height="51"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="momentmapLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-96-5oj">
+                                <rect key="frame" x="85" y="128" width="431" height="240"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="qww-sz-w4h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_vector" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-96-5oj">
-                                <rect key="frame" x="173" y="28" width="254" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="DoJ-7d-kSp"/>
-                                    <constraint firstAttribute="width" secondItem="6ro-96-5oj" secondAttribute="height" multiplier="127:120" id="EVE-6F-eeO"/>
-                                    <constraint firstAttribute="width" constant="254" id="JON-aO-a4I"/>
+                                    <constraint firstAttribute="width" secondItem="6ro-96-5oj" secondAttribute="height" multiplier="364:323" id="J9t-TD-KNp"/>
                                     <constraint firstAttribute="width" secondItem="6ro-96-5oj" secondAttribute="height" multiplier="127:120" id="rwz-J8-7Ft"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="rwz-J8-7Ft"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5GN-E5-rDm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="2X6-r0-4aC"/>
+                            <constraint firstItem="6ro-96-5oj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="65" id="7qa-5Z-Ned"/>
                             <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" symbolic="YES" id="A9z-3V-Xui"/>
-                            <constraint firstItem="5GN-E5-rDm" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="AFs-pK-fjn"/>
-                            <constraint firstItem="6ro-96-5oj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="F7z-X1-N9i"/>
-                            <constraint firstItem="6ro-96-5oj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YV9-y5-ccU"/>
+                            <constraint firstItem="6ro-96-5oj" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="108" id="Wj6-ZT-7sZ"/>
                             <constraint firstItem="obG-Y5-kRd" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="g2a-qf-4bq"/>
-                            <constraint firstItem="5GN-E5-rDm" firstAttribute="top" secondItem="6ro-96-5oj" secondAttribute="bottom" constant="7" id="qk8-bN-nZN"/>
+                            <constraint firstItem="6ro-96-5oj" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="plv-Bi-Mof"/>
                             <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="zyK-lb-0nS"/>
                         </constraints>
                     </view>
@@ -62,6 +55,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo_vector" width="1024" height="1024"/>
+        <image name="momentmapLogo" width="323" height="364"/>
     </resources>
 </document>
