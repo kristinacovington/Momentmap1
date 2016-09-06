@@ -22,7 +22,7 @@ static double PAWMetersToKilometers(double meters) {
 }
 
 static double const PAWDefaultFilterDistance = 1000.0;
-static double const PAWWallPostMaximumSearchDistance = 100.0; // Value in kilometers
+static double const PAWWallPostMaximumSearchDistance = 10000000000.0; // Value in kilometers
 
 static NSUInteger const PAWWallPostsSearchDefaultLimit = 100; // Query limit for pins and tableviewcells
 

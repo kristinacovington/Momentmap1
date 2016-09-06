@@ -16,6 +16,9 @@
 #import "PAWActivityView.h"
 #import "PAWNewUserViewController.h"
 
+#import "UsernameViewController.h"
+
+
 @interface PAWLoginViewController ()
 <UITextFieldDelegate,
 UIScrollViewDelegate,
@@ -27,6 +30,7 @@ PAWNewUserViewControllerDelegate>
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIView *backgroundView;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
+@property UITextField *myTextField;
 
 @end
 
@@ -141,7 +145,7 @@ PAWNewUserViewControllerDelegate>
                 } else {
                     // Save the name on Parse
      
-                    
+                
                     //facebookID = your facebook user id or facebook username both of work well
                     NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", result[@"id"]]];
                     NSData *imageData = [NSData dataWithContentsOfURL:pictureURL];
@@ -169,13 +173,28 @@ PAWNewUserViewControllerDelegate>
                     
 
                     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if(![PFUser currentUser][@"publicUsername"] ) {
+                         
+                            UsernameViewController *viewController = [[UsernameViewController alloc] initWithNibName:nil bundle:nil];
+                            viewController.delegate = self;
+                            [self presentViewController:viewController animated:YES completion:nil];
+                          
+                            
+                    }
+
+                        
                         completion();
                     }];
+                    
+                    
                 }
             }];
         }
     }];
 }
+
+
+
 
 - (IBAction)signUpPressed:(id)sender {
     [self presentNewUserViewController];

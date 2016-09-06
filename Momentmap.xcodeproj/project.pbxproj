@@ -12,6 +12,8 @@
 		959B77A41D53FAA50004145A /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959B77A11D53FAA50004145A /* ParseFacebookUtilsV4.framework */; };
 		959B77A61D542CD90004145A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959B77A51D542CD90004145A /* Launch Screen.storyboard */; };
 		959B77A71D5509530004145A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF251D1F291E004A0D70 /* Main.storyboard */; };
+		959B77AE1D56C7A90004145A /* UsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B77AD1D56C7A90004145A /* UsernameViewController.m */; };
+		959B77B01D56C8A80004145A /* UsernameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 959B77AF1D56C8A80004145A /* UsernameViewController.xib */; };
 		95D9CF1E1D1F291E004A0D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CF1D1D1F291E004A0D70 /* main.m */; };
 		95D9CF291D1F291E004A0D70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF281D1F291E004A0D70 /* Images.xcassets */; };
 		95D9CF2C1D1F291E004A0D70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95D9CF2A1D1F291E004A0D70 /* LaunchScreen.storyboard */; };
@@ -85,6 +87,9 @@
 		959B77A11D53FAA50004145A /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = Momentmap/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		959B77A51D542CD90004145A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		959B77AA1D550EBF0004145A /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		959B77AC1D56C7970004145A /* UsernameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsernameViewController.h; sourceTree = "<group>"; };
+		959B77AD1D56C7A90004145A /* UsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsernameViewController.m; sourceTree = "<group>"; };
+		959B77AF1D56C8A80004145A /* UsernameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsernameViewController.xib; sourceTree = "<group>"; };
 		95D9CF191D1F291E004A0D70 /* Momentmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momentmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D9CF1D1D1F291E004A0D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95D9CF261D1F291E004A0D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -335,6 +340,9 @@
 			children = (
 				95D9CF671D1F302D004A0D70 /* PAWLoginViewController.h */,
 				95D9CF681D1F3050004A0D70 /* PAWLoginViewController.m */,
+				959B77AC1D56C7970004145A /* UsernameViewController.h */,
+				959B77AF1D56C8A80004145A /* UsernameViewController.xib */,
+				959B77AD1D56C7A90004145A /* UsernameViewController.m */,
 				95D9CF6A1D1F3089004A0D70 /* PAWNewUserViewController.h */,
 				95D9CF6B1D1F30AC004A0D70 /* PAWNewUserViewController.m */,
 			);
@@ -527,6 +535,7 @@
 				959B77A61D542CD90004145A /* Launch Screen.storyboard in Resources */,
 				95D9CF291D1F291E004A0D70 /* Images.xcassets in Resources */,
 				95D9CF811D1F338B004A0D70 /* PAWSettingsViewController.xib in Resources */,
+				959B77B01D56C8A80004145A /* UsernameViewController.xib in Resources */,
 				95D9CF851D1F33BB004A0D70 /* InfoPlist.strings in Resources */,
 				95D9CFE41D2B0049004A0D70 /* PAWWallPostCreateViewController.xib in Resources */,
 				95D9CF7F1D1F338B004A0D70 /* PAWLoginViewController.xib in Resources */,
@@ -563,6 +572,7 @@
 				95D9CF621D1F2F89004A0D70 /* PAWPostTableViewCell.m in Sources */,
 				95D9CFE71D2B0427004A0D70 /* UIImage+ResizeAdditions.m in Sources */,
 				95D9D0011D2E23A3004A0D70 /* PAWPostView.m in Sources */,
+				959B77AE1D56C7A90004145A /* UsernameViewController.m in Sources */,
 				95D9CFFB1D2CC19A004A0D70 /* UIImage+AlphaAdditions.m in Sources */,
 				95D9CF781D1F31EF004A0D70 /* PAWSettingsViewController.m in Sources */,
 				95D9CFDD1D263D01004A0D70 /* FriendsViewController.m in Sources */,

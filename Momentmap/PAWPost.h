@@ -40,6 +40,9 @@
 @property (nonatomic, strong) UIImage *profile;
 @property(nonatomic, strong) UIImage *photo;
 
+@property (nonatomic, strong) UIImage *thumbnail;
+
+
 // Designated initializer.
 - (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate
                           andTitle:(NSString *)title

@@ -81,6 +81,17 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
 
     
     self.sendButton.enabled = NO;
+    
+    if(!_postObject){
+        [self.sendButton setTitle:@"Done" forState:UIControlStateDisabled];
+        [self.sendButton setTitle:@"Done" forState:UIControlStateNormal];
+
+    }
+    
+    UIColor *color = [UIColor darkGrayColor];
+    
+    [self.sendButton setTitleColor:color forState:UIControlStateDisabled];
+
     self.sendButton.hidden = YES;
     //[self.sendButton setTitle:<#(nullable NSString *)#> forState:UIControlStateDisabled];
     
@@ -295,6 +306,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     
     //UIViewController *vc = [self parentViewController];
     //[vc dismissModalViewControllerAnimated:YES];
+    if(_postObject) {
     UIAlertView * sentAlert = [[UIAlertView alloc] initWithTitle:@"Sent!"
                                                          message:nil
                                                         delegate:self
@@ -304,7 +316,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     
     [self performSelector:@selector(dismissSentAlertView:) withObject:sentAlert afterDelay:1];
     
-
+    }
     
     [self dismissViewControllerAnimated:NO completion:nil];
     
@@ -351,7 +363,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
         PFUser *userAtIndex = [self.searchResults objectAtIndex:indexPath.row];
         
         
-        cell.textLabel.text = userAtIndex[@"username"];
+        cell.textLabel.text = userAtIndex[@"publicUsername"];
         
         if([_friendsArray containsObject: userAtIndex] ){
             
@@ -380,7 +392,7 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
             NSLog(test[@"username"]);
         }
         
-        cell.textLabel.text = userAtIndex[@"username"];
+        cell.textLabel.text = userAtIndex[@"publicUsername"];
         
         if([_friendsArray containsObject: userAtIndex] ){
             
@@ -736,15 +748,15 @@ typedef NS_ENUM(uint8_t, PAWSettingsTableViewSection)
     //PFQuery *query = [PFUser query];
     
     PFQuery *queryCapitalizedString = [PFUser query];
-    [queryCapitalizedString whereKey:@"username" containsString:[searchTerm capitalizedString]];
+    [queryCapitalizedString whereKey:@"publicUsername" containsString:[searchTerm capitalizedString]];
     
     //query converted user text to lowercase
     PFQuery *queryLowerCaseString = [PFUser query];
-    [queryLowerCaseString whereKey:@"username" containsString:[searchTerm lowercaseString]];
+    [queryLowerCaseString whereKey:@"publicUsername" containsString:[searchTerm lowercaseString]];
     
     //query real user text
     PFQuery *querySearchBarString = [PFUser query];
-    [querySearchBarString whereKey:@"username" containsString:searchTerm];
+    [querySearchBarString whereKey:@"publicUsername" containsString:searchTerm];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryCapitalizedString,queryLowerCaseString, querySearchBarString,nil]];
     

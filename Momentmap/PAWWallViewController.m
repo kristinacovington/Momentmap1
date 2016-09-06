@@ -85,7 +85,7 @@ PAWWallPostCreateViewControllerDataSource>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.filterMaxDistance = 100000000.0;
+    self.filterMaxDistance = 1000.0;
     // Do any additional setup after loading the view from its nib.
     
     [self loadWallPostsTableViewController];
@@ -510,7 +510,10 @@ PAWWallPostCreateViewControllerDataSource>
             pinView.annotation = annotation;
         }
         
-        pinView.image = [(PAWPost *) annotation profile];
+        UIImage *profile = [(PAWPost *) annotation thumbnail];
+       
+        
+        pinView.image = profile;
         //pinView.pinColor = [(PAWPost *)annotation pinColor];
         //pinView.animatesDrop = [((PAWPost *)annotation) animatesDrop];
         pinView.canShowCallout = YES;
@@ -529,6 +532,8 @@ PAWWallPostCreateViewControllerDataSource>
         PAWPost *post = [view annotation];
         [self.wallPostsTableViewController highlightCellForPost:post];
         
+        if(![[post.object[@"user"] valueForKey:@"objectId"] isEqualToString: [PFUser currentUser].objectId]) {
+
         PAWPostView *postViewController = [[PAWPostView alloc] initWithNibName:nil bundle:nil];
         postViewController.delegate = self;
         
@@ -546,7 +551,7 @@ PAWWallPostCreateViewControllerDataSource>
         
         [postViewController setImage:[(PAWPost *) annotation photo] setComment:[(PAWPost *) annotation title] setUsername:[(PAWPost *) annotation subtitle] setProfile:[(PAWPost *) annotation profile]];
         */
-        if(![post.object[PAWParsePostUserKey] isEqual:[PFUser currentUser]]) {
+      
             [self presentViewController:postViewController animated:NO completion:nil];
             [_wallPostsTableViewController.tableView reloadData];
             
@@ -585,8 +590,8 @@ PAWWallPostCreateViewControllerDataSource>
 - (void)queryForAllPostsNearLocation:(CLLocation *)currentLocation withNearbyDistance:(CLLocationAccuracy)nearbyDistance {
     PFQuery *query = [PFQuery queryWithClassName:PAWParsePostsClassName];
     
-    [query whereKey:@"Viewers" equalTo: [PFUser currentUser]];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query whereKey:@"Viewers" equalTo:[PFUser currentUser].objectId];
+
     if (currentLocation == nil) {
         NSLog(@"%s got a nil location!", __PRETTY_FUNCTION__);
     }
@@ -599,9 +604,9 @@ PAWWallPostCreateViewControllerDataSource>
     
     // Query for posts sort of kind of near our current location.
     PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude];
-    //[query whereKey:PAWParsePostLocationKey nearGeoPoint:point withinKilometers:PAWWallPostMaximumSearchDistance];
-    //[query includeKey:PAWParsePostUserKey];
-    //query.limit = PAWWallPostsSearchDefaultLimit;
+    [query whereKey:PAWParsePostLocationKey nearGeoPoint:point withinKilometers:PAWWallPostMaximumSearchDistance];
+    [query includeKey:PAWParsePostUserKey];
+    query.limit = PAWWallPostsSearchDefaultLimit;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -680,13 +685,18 @@ PAWWallPostCreateViewControllerDataSource>
         
         // if this post is outside the filter distance, don't show the regular callout.
         CLLocationDistance distanceFromCurrent = [currentLocation distanceFromLocation:objectLocation];
-        if (distanceFromCurrent > nearbyDistance) { // Outside search radius
-            [post setTitleAndSubtitleOutsideDistance:YES];
-            [(MKAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
-        } else {
+       // if (distanceFromCurrent > nearbyDistance) { // Outside search radius
+      //      [post setTitleAndSubtitleOutsideDistance:YES];
+       //     [(MKAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
+        //} else {
             [post setTitleAndSubtitleOutsideDistance:NO]; // Inside search radius
-            [(MKAnnotationView *)[self.mapView viewForAnnotation:post] setImage:post.profile];
-        }
+        
+        UIImage *profile = [(PAWPost *) post thumbnail];
+        
+       
+        
+            [(MKAnnotationView *)[self.mapView viewForAnnotation:post] setImage:profile];
+        //}
     }
 }
 

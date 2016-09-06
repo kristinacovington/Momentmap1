@@ -73,7 +73,7 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
     [self.imageView.layer setBorderWidth: 2.0];
     
     self.tableData = [NSArray arrayWithObjects: @"Change profile photo", @"Save profile photo", @"Log out", @"Delete account", nil];
-    self.name.text = [PFUser currentUser][@"name"];
+    self.name.text = [PFUser currentUser][@"publicUsername"];
     
     [self setProfile];
     
@@ -571,11 +571,12 @@ static uint16_t const PAWSettingsTableViewLogoutNumberOfRows = 2;
 - (IBAction)friends:(id)sender {
     
     FriendsViewController *viewController = [[FriendsViewController alloc] initWithNibName:nil bundle:nil];
-    
+    //viewController.delegate = self;
+
    // viewController.delegate = self;
     
     
-    [self.navigationController pushViewController:viewController animated:YES];
+    [self presentViewController:viewController animated:NO completion:nil];
     
     //[self dismissViewControllerAnimated:NO completion:nil];
 

@@ -56,12 +56,21 @@
         
         PFFile *photoFile = self.object[kPAPPostPictureKey];
         PFFile *profileFile = self.user[kPAPProfilePictureKey];
-        
+
   
 
         [profileFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 self.profile = [UIImage imageWithData:data];
+                CGRect rect = CGRectMake(0,0,75,75);
+                UIGraphicsBeginImageContext( rect.size );
+                [[UIImage imageWithData:data] drawInRect:rect];
+                UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                
+                NSData *imageData = UIImagePNGRepresentation(picture1);
+                UIImage *img=[UIImage imageWithData:imageData];
+                self.thumbnail = img;
                 // image can now be set on a UIImageView
             }
         }];
@@ -72,6 +81,9 @@
                 // image can now be set on a UIImageView
             }
         }];
+        
+  
+        
     }
     /*
     PFFile *photoFile = object[kPAPPostPictureKey];
